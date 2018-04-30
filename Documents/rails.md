@@ -79,7 +79,7 @@ auser.destroy
 User.destroy 'id'
 ```
 
-##### 以非交互的方式运行 Ruby 代码
+##### 以非交互的方式运行 Ruby 代码[资料](https://ruby-china.github.io/rails-guides/command_line.html#rails-runner)
 ```ruby
 rails runner(r)	
 ```
