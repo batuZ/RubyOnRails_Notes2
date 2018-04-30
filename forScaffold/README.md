@@ -35,7 +35,7 @@ ps:
 * 更多高级操作可以参考`Modle`,或就在`Modle`中操作
 
 #### 创建的内容
-* 1、向数据库迁移的配置文件：[db/migrate/20180430105653_create_abcs.rb]()
+* 1、向数据库迁移的配置文件：[db/migrate/20180430105653_create_abcs.rb](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forScaffold/db/migrate/20180430115148_create_abcs.rb)
 * 2、资源模型：[app/models/abc.rb]()
 * 3、向[路由]()中增加资源路由：resources :abcs
 * 4、资源控制器：[app/controllers/ab_cs_controller.rb]()
