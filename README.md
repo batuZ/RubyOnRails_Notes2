@@ -5,22 +5,22 @@
 - [ ] [Modle]()
 - [ ] [View]()
 - [ ] [Controller]()
-- [x] [gem 操作]()
+- [x] [gem 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/README.md#gem-%E6%93%8D%E4%BD%9C)
 - [ ] [rails 操作]()
 - [ ] [ruby 控制台]()
 ---
 ### gem 操作
 
 * [官网资料](https://gems.ruby-china.org/)
-* [其它资料](http://www.runoob.com/ruby/ruby-rubygems.html)
+* [菜鸟教程](http://www.runoob.com/ruby/ruby-rubygems.html)
 
-  1､ 查看版本号，同时也是验证程序是否可用的方法
+    1､ 查看版本号，同时也是验证程序是否可用的方法
 ```ruby
 gem -v
 ruby -v
 rails -v
 ```
-  2､ gem源 查看、变更
+    2､ gem源 查看、变更
 ```ruby
 gem sources 					#查看当前的源
 gem sources --add https://gems.ruby-china.org/	#添加源
