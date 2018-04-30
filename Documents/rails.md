@@ -64,7 +64,7 @@ rails routes
 rake routes
 ```
 
-##### [irb](https://www.cnblogs.com/Tommy-Yu/p/4141122.html)
+##### 在控制台与数据库交互[irb](https://www.cnblogs.com/Tommy-Yu/p/4141122.html)
 在命令行中与 Rails 应用交互 (IRB)
 ```ruby
 rails console(c)
@@ -79,7 +79,7 @@ auser.destroy
 User.destroy 'id'
 ```
 
-# 以非交互的方式运行 Ruby 代码
+##### 以非交互的方式运行 Ruby 代码
 ```ruby
 rails runner(r)	
 ```
@@ -90,7 +90,6 @@ rails runner(r)
 	使用“种子”特性很容易，只要用 Ruby 代码填充 db/seeds.rb 文件，
 	然后执行 rails db:seed 命令即可：
 ```ruby
-
 5.times do |i|
   Product.create(name: "Product ##{i}", description: "A product.")
 end
