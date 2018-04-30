@@ -64,7 +64,7 @@ rails routes
 rake routes
 ```
 
-##### 在控制台与数据库交互[irb](https://www.cnblogs.com/Tommy-Yu/p/4141122.html)
+##### 在控制台与数据库交互[资料](https://www.cnblogs.com/Tommy-Yu/p/4141122.html)
 在命令行中与 Rails 应用交互 (IRB)
 ```ruby
 rails console(c)
@@ -84,7 +84,7 @@ User.destroy 'id'
 rails runner(r)	
 ```
 
-##### [种子文件](https://ruby-china.github.io/rails-guides/active_record_migrations.html#migrations-and-seed-data)
+##### 种子文件[资料](https://ruby-china.github.io/rails-guides/active_record_migrations.html#migrations-and-seed-data)
 	使用 Rails 内置的“种子”特性可以快速简便地完成创建数据库后添加初始数据的任务。
 	在开发和测试环境中，经常需要重新加载数据库，这时“种子”特性就更有用了。
 	使用“种子”特性很容易，只要用 Ruby 代码填充 db/seeds.rb 文件，
