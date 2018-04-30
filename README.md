@@ -44,19 +44,19 @@
 
 | 命令 | 描述 |
 | :------------- | :----------- |
-| gem update | #更新所有包 |
-| gem update --system | #更新RubyGems软件 |
-| gem install rake | #安装rake,从本地或远程服务器 |
-| gem install rake --remote | #安装rake,从远程服务器 |
-|gem install watir -v 1.6.2|#指定安装版本|
-|gem uninstall rake|#卸载rake包|
-|gem list|#列出本地包|
-|gem list d|#列出本地以d打头的包|
-|gem query -n ''[0-9]'' --local|#查找本地含有数字的包|
-|gem search log --bot|#从本地和远程服务器上查找含有log字符串的包|
-|gem search log --remoter|#只从远程服务器上查找含有log字符串的包|
-|gem search -r log|#只从远程服务器上查找含有log字符串的包|
-|gem help|#提醒式的帮助|
+|**gem** _update_ | #更新所有包 |
+|**gem** _update_ --system | #更新RubyGems软件 |
+|**gem** _install_ rake | #安装rake,从本地或远程服务器 |
+|**gem** _install_ rake --remote | #安装rake,从远程服务器 |
+|**gem** _install_ watir -v 1.6.2|#指定安装版本|
+|**gem** _uninstall_ rake|#卸载rake包|
+|**gem** _list_|#列出本地包|
+|**gem** _list_ d|#列出本地以d打头的包|
+|**gem** _query_ -n ''[0-9]'' --local|#查找本地含有数字的包|
+|**gem** _search_ log --bot|#从本地和远程服务器上查找含有log字符串的包|
+|**gem** _search_ log --remoter|#只从远程服务器上查找含有log字符串的包|
+|**gem** _search_ -r log|#只从远程服务器上查找含有log字符串的包|
+|**gem** _help_|#提醒式的帮助|
 gem help install|#列出install命令 帮助
 gem help examples|#列出gem命令使用一些例子
 gem build rake.gemspec|#把rake.gemspec编译成rake.gem
