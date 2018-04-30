@@ -48,4 +48,24 @@ rails server
 //别名
 rails s
 
+//带参数启动
+rails s -b 192.168.1.21 -p 3310
+	-p 指定服务端口
+	-b 指定服务IP
+	-c 使用自定义rackup
+	-d 使用服务器运行时作为系统守护进程
+	-u 启用debug模式
+	-e 指定运行环境 devlopment(默认) \ test \ production
+```
+
+##### 查看路由信息
+```ruby
+rails routes
+rake routes
+```
+
+##### 其它命令
+```ruby
+[rails console(c)		--在命令行中与 Rails 应用交互 (IRB)]()
+rails runner(r)			--以非交互的方式运行 Ruby 代码
 ```
