@@ -8,19 +8,21 @@
 ---
 ### gem操作
 ```
-官网资料：https://gems.ruby-china.org/
-其它资料：http://www.runoob.com/ruby/ruby-rubygems.html
+[官网资料](https://gems.ruby-china.org/)
+[其它资料](http://www.runoob.com/ruby/ruby-rubygems.html)
 
 1､ 查看版本号，同时也是验证程序是否可用的方法
+```ruby
 	gem -v
 	ruby -v
 	rails -v
-
+```
 2､ gem源 查看、变更
+```ruby
 	gem sources 									#查看当前的源
 	gem sources --add https://gems.ruby-china.org/	#添加源
 	gem sources --remove https://rubygems.org/		#移除源
-
+```
 3､ 查看 gem包
 	gem list -l 	#本地gem
 	gem list --r 	#可用gem
