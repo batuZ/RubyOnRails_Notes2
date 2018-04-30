@@ -36,16 +36,12 @@
 ```
 ##### 更多操作：
 
-| 名字 | 描述 |
+| 命令 | 描述 |
 | ------------- | ----------- |
-| Help      | ~~Display the~~ help window.|
-| Close     | _Closes_ a window     |
-
-
 | gem update | #更新所有包 |
-gem update --system | #更新RubyGems软件 |
-gem install rake | #安装rake,从本地或远程服务器 |
-gem install rake --remote | #安装rake,从远程服务器 |
+| gem update --system | #更新RubyGems软件 |
+| gem install rake | #安装rake,从本地或远程服务器 |
+| gem install rake --remote | #安装rake,从远程服务器 |
 |gem install watir -v 1.6.2|#指定安装版本|
 |gem uninstall rake|#卸载rake包|
 |gem list|#列出本地包|
