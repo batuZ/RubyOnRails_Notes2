@@ -6,7 +6,7 @@
 - [ ] [View]()
 - [ ] [Controller]()
 - [x] [gem 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/README.md#gem-%E6%93%8D%E4%BD%9C)
-- [ ] [rails 操作]()
+- [ ] [rails 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/README.md#rails%E6%93%8D%E4%BD%9C)
 - [ ] [ruby 控制台]()
 ---
 ### gem 操作
@@ -14,29 +14,29 @@
 * [官网资料](https://gems.ruby-china.org/)
 * [菜鸟教程](http://www.runoob.com/ruby/ruby-rubygems.html)
 
-    1､ 查看版本号，同时也是验证程序是否可用的方法
+1､ 查看版本号，同时也是验证程序是否可用的方法
 ```ruby
 gem -v
 ruby -v
 rails -v
 ```
-    2､ gem源 查看、变更
+2､ gem源 查看、变更
 ```ruby
 gem sources 					#查看当前的源
 gem sources --add https://gems.ruby-china.org/	#添加源
 gem sources --remove https://rubygems.org/	#移除源
 ```
-  3､ 查看 gem包
+3､ 查看 gem包
 ```ruby
 gem list -l 	#本地gem
 gem list --r 	#可用gem
 ```
-  4､ 安装，删除 gem包
+4､ 安装，删除 gem包
 ```ruby
 gem install XXX
 gem uninstall XXX
 ```
-  5､ Gemfile 
+5､ Gemfile 
 ```ruby
 gem 'rails'  			#使用最新版的 rails
 gem 'rails', '5.1.2'		#使用指定版本的 rails
