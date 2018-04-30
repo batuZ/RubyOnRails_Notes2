@@ -5,9 +5,11 @@
 - [ ] [Modle]()
 - [ ] [View]()
 - [ ] [Controller]()
-
+- [x] [gem 操作]()
+- [ ] [rails 操作]()
+- [ ] [ruby 控制台]()
 ---
-### gem操作
+### gem 操作
 
 * [官网资料](https://gems.ruby-china.org/)
 * [其它资料](http://www.runoob.com/ruby/ruby-rubygems.html)
