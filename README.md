@@ -5,9 +5,9 @@
 - [ ] [Modle]()
 - [ ] [View]()
 - [ ] [Controller]()
-- [x] [gem 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/README.md#gem-%E6%93%8D%E4%BD%9C)
-- [ ] [rails 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/README.md#rails%E6%93%8D%E4%BD%9C)
-- [ ] [ruby 控制台]()
+- [x] [gem 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/gem.md#gem-%E6%93%8D%E4%BD%9C)
+- [ ] [rails 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/rails.md#rails%E6%93%8D%E4%BD%9C)
+- [ ] [ruby 控制台](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/rubyControl.md#rails-controlc%E6%93%8D%E4%BD%9C)
 
 
 
