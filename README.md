@@ -34,9 +34,15 @@
 	gem 'rails', '>=5.2'		#使用5.2或不低于5.2的 rails
 	gem 'rails', '~>5.0'		#使用不小于5.0且不大于6.0版本的 rails
 ```
-更多操作：<br/>
-gem update | #更新所有包 |
-:---|:---|
+##### 更多操作：
+
+| 名字 | 描述 |
+| ------------- | ----------- |
+| Help      | ~~Display the~~ help window.|
+| Close     | _Closes_ a window     |
+
+
+| gem update | #更新所有包 |
 gem update --system | #更新RubyGems软件 |
 gem install rake | #安装rake,从本地或远程服务器 |
 gem install rake --remote | #安装rake,从远程服务器 |
