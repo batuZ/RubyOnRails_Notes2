@@ -32,7 +32,7 @@
 	gem 'rails', '5.1.2'		#使用指定版本的 rails
 	gem 'rails', '>=5.2'		#使用5.2或不低于5.2的 rails
 	gem 'rails', '~>5.0'		#使用不小于5.0且不大于6.0版本的 rails
-
+|---|---|
 |gem update| 						#更新所有包|
 |gem update --system| 			#更新RubyGems软件|
 gem install rake 				#安装rake,从本地或远程服务器
