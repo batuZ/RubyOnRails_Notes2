@@ -65,7 +65,6 @@ rake routes
 ```
 
 ##### 在控制台与数据库交互[资料](https://www.cnblogs.com/Tommy-Yu/p/4141122.html)
-在命令行中与 Rails 应用交互 (IRB)
 ```ruby
 rails console(c)
 rails c
