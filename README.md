@@ -34,7 +34,7 @@
 	gem 'rails', '>=5.2'		#使用5.2或不低于5.2的 rails
 	gem 'rails', '~>5.0'		#使用不小于5.0且不大于6.0版本的 rails
 ```
-更多操作：
+更多操作：<br/>
 |gem update|#更新所有包|
 |:---|:---|
 |gem update --system|#更新RubyGems软件|
