@@ -37,7 +37,7 @@
 ##### 更多操作：
 
 | 命令 | 描述 |
-| ------------- | ----------- |
+| :------------- | :----------- |
 | gem update | #更新所有包 |
 | gem update --system | #更新RubyGems软件 |
 | gem install rake | #安装rake,从本地或远程服务器 |
@@ -53,10 +53,10 @@
 |gem help|#提醒式的帮助|
 gem help install|#列出install命令 帮助
 gem help examples|#列出gem命令使用一些例子
-gem build rake.gemspec 			#把rake.gemspec编译成rake.gem
-gem check -v pkg/rake-0.4.0.gem #检测rake是否有效
-gem cleanup 					#清除所有包旧版本，保留最新版本
-gem contents rake 				#显示rake包中所包含的文件
-gem dependency rails -v 0.10.1 	#列出与rails相互依赖的包
-gem environment 				#查看gem的环境
-gem sources 					#查看镜像
+gem build rake.gemspec|#把rake.gemspec编译成rake.gem
+gem check -v pkg/rake-0.4.0.gem|#检测rake是否有效
+gem cleanup|#清除所有包旧版本，保留最新版本
+gem contents rake|#显示rake包中所包含的文件
+gem dependency rails -v 0.10.1|#列出与rails相互依赖的包
+gem environment|#查看gem的环境
+gem sources|#查看镜像
