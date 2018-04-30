@@ -7,7 +7,7 @@
 - [ ] [Controller]()
 ---
 ### gem操作
-```
+
 [官网资料](https://gems.ruby-china.org/)
 [其它资料](http://www.runoob.com/ruby/ruby-rubygems.html)
 
@@ -19,19 +19,23 @@
 ```
 2､ gem源 查看、变更
 ```ruby
-	gem sources 									#查看当前的源
+	gem sources 					#查看当前的源
 	gem sources --add https://gems.ruby-china.org/	#添加源
-	gem sources --remove https://rubygems.org/		#移除源
+	gem sources --remove https://rubygems.org/	#移除源
 ```
 3､ 查看 gem包
+```ruby
 	gem list -l 	#本地gem
 	gem list --r 	#可用gem
+```
 4､ 安装，删除 gem包
+```ruby
 	gem install XXX
 	gem uninstall XXX
-
+```
 5､ Gemfile 
-	gem 'rails'  				#使用最新版的 rails
+```ruby
+	gem 'rails'  			#使用最新版的 rails
 	gem 'rails', '5.1.2'		#使用指定版本的 rails
 	gem 'rails', '>=5.2'		#使用5.2或不低于5.2的 rails
 	gem 'rails', '~>5.0'		#使用不小于5.0且不大于6.0版本的 rails
