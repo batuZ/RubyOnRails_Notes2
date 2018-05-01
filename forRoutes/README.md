@@ -53,7 +53,7 @@ resources :images, :vedios, :pages
 
 ##### 增加资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#adding-more-restful-actions)
 
-    `注意：当一个资源增加了多个动作时，就要考虑是否要新建一个资源了`
+`注意：当一个资源增加了多个动作时，就要考虑是否要新建一个资源了`
 
 ```ruby
 # 成员路由,指向某条特定的记录，使用时要带参
@@ -78,8 +78,10 @@ resources :books{
 ```
 
 ##### 屏蔽部份资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#restricting-the-routes-created)
+`如果应用中有很多资源式路由，通过 :only 和 :except 选项，我们可以只生成实际需要的路由，这样可以减少内存使用、加速路由处理过程。`
 ```ruby
-
+resources :photos, only: [:index, :show]
+resources :photos, except: :destroy
 ```
 ##### 命名空间：[资料](https://ruby-china.github.io/rails-guides/routing.html#controller-namespaces-and-routing)
 
