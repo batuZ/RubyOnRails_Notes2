@@ -42,7 +42,7 @@ get 'root/second', as: 'aaa' #:as => 'aaa'
 
 ---
 
-#### 资源路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#resource-routing-the-rails-default)
+### 资源路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#resource-routing-the-rails-default)
 ```ruby
 resources :books
 
@@ -66,6 +66,7 @@ resources :books do
     get 'act_y'     # => /books/:id/act_y
   end
 end
+
 
 # 集合路由，指向一个记录的集合
 resources :books{
@@ -91,12 +92,14 @@ namespace :art{
   resources :books      # => art_books GET    /art/books(.:format)          art/books#index
 }
 
+
 # 把普通资源路由映射到带命名空间的控制器上
 scope module: 'art' do
   resources :books      # => books GET    /books(.:format)          art/books#index
 end
 # 对于单个资源的情况，还可以这样声明：
 resources :books, module: 'art' # 效果同上
+
 
 # 让控制器使用带命名空间的URL
 scope :art {
@@ -107,7 +110,59 @@ resources :books, path: :art
 ```
 
 #### 嵌套资源：[资料](https://ruby-china.github.io/rails-guides/routing.html#nested-resources)
+```ruby
+# 普通的一层嵌套
+resources :groups{
+  resources :photos
+}
 
+
+# 多级嵌套时，要使用浅嵌套
+resources :groups{
+  resources :photos, only: [:index, :new, :create]
+}
+resources :photos, only: [:show, :edit, :update, :destroy]
+# 但这种写法比较麻烦，可以使用shallow（浅）简写为：
+resources :groups{
+  resources :photos, shallow: true
+}
+
+
+# 父资源有多个子级时
+resources :books, shallow: true do
+  resources :photos
+  resources :images
+end
+
+
+# 有多个资源要分别嵌套时，用shallow定义一个区域，这个区域内不需要标记，就可以设置为嵌套
+shallow{
+  resources :books{
+    resources :xhzd{
+      resources :ch
+    }
+  }
+  resources :pictruers{
+    resources :sst
+  }
+}
+
+
+# scope shallow_path 选项，可以为子级url路径加一个指定的前缀 ‘bt’
+scope shallow_path: 'bt' do
+  resources :books do
+    resources :photos, shallow: true
+  end
+end
+
+
+# shallow_prefix 选项会为具名辅助方法添加指定前缀：
+scope shallow_prefix: 'bt' do
+  resources :books do
+    resources :photos, shallow: true
+  end
+end
+```
 
 
 
