@@ -15,6 +15,7 @@ namespace :admin do
 end
 root to: "home#index"
 ```
+---
 
 ##### 手动配置一般路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#non-resourceful-routes)
 ```ruby
@@ -31,7 +32,7 @@ get 'root/first'
 get 'root/second', as: 'aaa' #:as => 'aaa'
 ```
 
-##### 关于约束
+##### 关于约束 '未完成'
 * [HTTP 方法约束](https://ruby-china.github.io/rails-guides/routing.html#http-verb-constraints)
 * [片段约束](https://ruby-china.github.io/rails-guides/routing.html#segment-constraints)
 * [请求约束](https://ruby-china.github.io/rails-guides/routing.html#request-based-constraints)
@@ -39,17 +40,47 @@ get 'root/second', as: 'aaa' #:as => 'aaa'
 * [路由通配符和通配符片段](https://ruby-china.github.io/rails-guides/routing.html#route-globbing-and-wildcard-segments)
 
 ##### 重定向：[资料](https://ruby-china.github.io/rails-guides/routing.html#redirection)
-  
+  '未完成'
 ---
 
 ##### 资源路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#resource-routing-the-rails-default)
 ```ruby
 resources :books
+
+# 同时定义多个资源路由
+resources :images, :vedios, :pages
 ```
-##### 增加资源动作：[资料]()
 
-##### 屏蔽部份资源动作：[资料]()
+##### 增加资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#adding-more-restful-actions)
 
+    `注意：当一个资源增加了多个动作时，就要考虑是否要新建一个资源了`
+
+```ruby
+# 成员路由,指向某条特定的记录，使用时要带参
+resources :books do
+  # 用on: :member方法增加一个动作
+    get 'redef',on: :member     # => /books/:id/redef
+  
+  #用member do方法增加多个动作
+  member do
+    get 'act_x'     # => /books/:id/act_x
+    get 'act_y'     # => /books/:id/act_y
+  end
+end
+
+# 集合路由，指向一个记录的集合
+resources :books{
+  collection{
+    get 'redef'     # => /books/redef
+    get 'redef_k'
+  }
+}
+```
+
+##### 屏蔽部份资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#restricting-the-routes-created)
+```ruby
+
+```
 ##### 命名空间：[资料](https://ruby-china.github.io/rails-guides/routing.html#controller-namespaces-and-routing)
 
 
