@@ -14,10 +14,17 @@ end
 root to: "home#index"
 ```
 
-#### 在浏览器中查看所有路由信息
+#### 查看路由信息
 ``` 
 # 在控制台查看所有路由信息
 rails routes
+
+# 搜索路由，只要路由的【URL】【辅助方法的名称】、【HTTP方法】或【URL路径】中有部分匹配，该路由就会显示在搜索结果中。
+rails routes -g haha  # => 搜索所有包含 haha 的路由
+
+# 查看映射到指定控制器的路由
+rails routes -c books
+
 # 在浏览器中查看所有路由信息
 http://localhost:3000/rails/info/routes
 ```
@@ -171,6 +178,9 @@ scope shallow_prefix: 'bt' do
   end
 end
 ```
+---
+
+#### 测试路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#testing-routes)
 
 
 
