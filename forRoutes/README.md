@@ -84,7 +84,29 @@ resources :photos, only: [:index, :show]
 resources :photos, except: :destroy
 ```
 ##### 命名空间：[资料](https://ruby-china.github.io/rails-guides/routing.html#controller-namespaces-and-routing)
+  ‘如果想在命名空间代码块中使用另一个控制器命名空间，可以指定控制器的绝对路径，例如 get '/foo' => '/foo#index'。’
+  ·命名空间不会影响路由的辅助名称·
+```ruby
+# 命名，url，控制器都带空间名
+namespace :art{
+  resources :books      # => art_books GET    /art/books(.:format)          art/books#index
+}
 
+# 把普通资源路由映射到带命名空间的控制器上
+scope module: 'art' do
+  resources :books      # => books GET    /books(.:format)          art/books#index
+end
+# 对于单个资源的情况，还可以这样声明：
+resources :books, module: 'art' # 效果同上
+
+# 让控制器使用带命名空间的URL
+ scope '/art' do
+    resources :books
+ end
+# 对于单个资源的情况，还可以这样声明：
+resources :books, path: '/art'
+
+```
 
 ##### 嵌套资源：[资料](https://ruby-china.github.io/rails-guides/routing.html#nested-resources)
 
