@@ -18,15 +18,6 @@ rails c production      #进入production模式
 // 创建一条记录
 Book.new(title:'红楼梦',pages:4800)
 
-// 格式化输出记录内容
-pp hlm
-# =>  id: nil,
-# =>  title: "红楼梦",
-# =>  pages: 777,
-# =>  created_at: nil,
-# =>  updated_at: nil>
-# =>  <Book id: nil, title: "红楼梦", pages: 777, created_at: nil, updated_at: nil> 
-
 // 获取记录变量，保存进数据库
 hlm = Book.new(title:'红楼梦',pages:4800)
 hlm.save        #返回true为保存成功
@@ -54,7 +45,49 @@ hlm.update_attributes(:title=>'aaa',:pages=>4400)
 // 从数据库删除记录
 hlm.destroy     #返回被删除记录
 
+// 格式化输出记录内容 pp 变量名
+pp hlm
+# =>  id: nil,
+# =>  title: "红楼梦",
+# =>  pages: 4800,
+# =>  created_at: nil,
+# =>  updated_at: nil>
+# =>  <Book id: nil, title: "红楼梦", pages: 4800, created_at: nil, updated_at: nil> 
 ```
 
+---
+##### 在control中模拟http请求
+    ActionController::Integration::Session在script/console的console_app中，
+    使用的句柄是app，返回ActionController::Integration::Session的一个实例
+```ruby
+app.get '/books/12'
 
-
+# => Processing by BooksController#show as HTML
+# =>   Parameters: {"id"=>"12"}
+# =>   Book Load (0.3ms)  SELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?  [["id", 12 ["LIMIT", 1]]
+# =>   Rendering books/show.html.erb within layouts/application
+# =>   Rendered books/show.html.erb within layouts/application (0.7ms)
+# => Completed 200 OK in 28ms (Views: 21.7ms | ActiveRecord: 0.3ms)
+# => 200
+```
+    其它请求
+    delete
+    delete_via_redirect
+    follow_redirect!
+    get
+    get_via_redirect
+    head
+    host!
+    https!
+    https?
+    new
+    post
+    post_via_redirect
+    put
+    put_via_redirect
+    redirect?
+    request_via_redirect
+    reset!
+    url_for
+    xhr
+    xml_http_request
