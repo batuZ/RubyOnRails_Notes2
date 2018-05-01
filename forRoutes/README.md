@@ -5,7 +5,7 @@
 [Routes 中的配置示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/config/routes.rb) | 
 [view 中的使用示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/app/views/root/welcome.html.erb)
 
-##### 设置根[资料](https://ruby-china.github.io/rails-guides/routing.html#using-root)
+##### 设置根：[资料](https://ruby-china.github.io/rails-guides/routing.html#using-root)
 ```ruby
 root 'rootview#welcome'
 
@@ -16,7 +16,7 @@ end
 root to: "home#index"
 ```
 
-##### 手动配置一般路由[资料](https://ruby-china.github.io/rails-guides/routing.html#non-resourceful-routes)
+##### 手动配置一般路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#non-resourceful-routes)
 ```ruby
 // http动作 view模版路径 , to: 控制器#动作
 get 'root/kkk', to: 'root#myAction'
@@ -25,7 +25,7 @@ get 'root/kkk', to: 'root#myAction'
 get 'root/first'
 ```
 
-##### 命名路由[资料](https://ruby-china.github.io/rails-guides/routing.html#naming-routes)
+##### 命名路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#naming-routes)
 ```ruby
 // 命名路由, 请求时直接使用路由名_path(参数)
 get 'root/second', as: 'aaa' #:as => 'aaa'
@@ -38,6 +38,25 @@ get 'root/second', as: 'aaa' #:as => 'aaa'
 * [高级约束](https://ruby-china.github.io/rails-guides/routing.html#advanced-constraints)
 * [路由通配符和通配符片段](https://ruby-china.github.io/rails-guides/routing.html#route-globbing-and-wildcard-segments)
 
-##### 资源路由
+##### 重定向：[资料](https://ruby-china.github.io/rails-guides/routing.html#redirection)
+  
+---
 
+##### 资源路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#resource-routing-the-rails-default)
+```ruby
+resources :books
 ```
+##### 增加资源动作：[资料]()
+
+##### 屏蔽部份资源动作：[资料]()
+
+##### 命名空间：[资料](https://ruby-china.github.io/rails-guides/routing.html#controller-namespaces-and-routing)
+
+
+##### 嵌套资源：[资料](https://ruby-china.github.io/rails-guides/routing.html#nested-resources)
+
+
+
+
+
+
