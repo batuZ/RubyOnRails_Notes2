@@ -13,6 +13,14 @@ namespace :admin do
 end
 root to: "home#index"
 ```
+
+#### 在浏览器中查看所有路由信息
+``` 
+# 在控制台查看所有路由信息
+rails routes
+# 在浏览器中查看所有路由信息
+http://localhost:3000/rails/info/routes
+```
 ---
 
 ### 手动配置一般路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#non-resourceful-routes)
