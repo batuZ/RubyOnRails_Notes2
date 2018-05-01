@@ -1,9 +1,7 @@
 ## Routes,路由管理列表
 
 
-[官方资料](https://ruby-china.github.io/rails-guides/routing.html) | 
-[Routes 中的配置示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/config/routes.rb) | 
-[view 中的使用示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/app/views/root/welcome.html.erb)
+[官方资料](https://ruby-china.github.io/rails-guides/routing.html)
 
 #### 设置根：[资料](https://ruby-china.github.io/rails-guides/routing.html#using-root)
 ```ruby
