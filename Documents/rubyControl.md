@@ -70,6 +70,7 @@ app.get '/books/12'
 # => Completed 200 OK in 28ms (Views: 21.7ms | ActiveRecord: 0.3ms)
 # => 200
 ```
+```
     其它请求
     delete
     delete_via_redirect
@@ -91,3 +92,4 @@ app.get '/books/12'
     url_for
     xhr
     xml_http_request
+```
