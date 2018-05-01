@@ -1,12 +1,13 @@
 ## Routes,路由管理列表
 
 
-[Routes 中的配置示例]() | 
-[view 中的使用示例]()
+[官方资料](https://ruby-china.github.io/rails-guides/routing.html) | 
+[Routes 中的配置示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/config/routes.rb) | 
+[view 中的使用示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/app/views/root/welcome.html.erb)
 
-##### 设置首页
+##### [设置首页](https://ruby-china.github.io/rails-guides/routing.html#using-root)
 ```ruby
-	root 'rootview#welcome'
+root 'rootview#welcome'
 ```
 
 ##### 手动配置一般路由[]
