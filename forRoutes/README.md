@@ -5,7 +5,7 @@
 [Routes 中的配置示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/config/routes.rb) | 
 [view 中的使用示例](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/forRoutes/app/views/root/welcome.html.erb)
 
-##### 设置根：[资料](https://ruby-china.github.io/rails-guides/routing.html#using-root)
+#### 设置根：[资料](https://ruby-china.github.io/rails-guides/routing.html#using-root)
 ```ruby
 root 'rootview#welcome'
 
@@ -17,7 +17,7 @@ root to: "home#index"
 ```
 ---
 
-##### 手动配置一般路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#non-resourceful-routes)
+### 手动配置一般路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#non-resourceful-routes)
 ```ruby
 // http动作 view模版路径 , to: 控制器#动作
 get 'root/kkk', to: 'root#myAction'
@@ -26,24 +26,25 @@ get 'root/kkk', to: 'root#myAction'
 get 'root/first'
 ```
 
-##### 命名路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#naming-routes)
+#### 命名路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#naming-routes)
 ```ruby
 // 命名路由, 请求时直接使用路由名_path(参数)
 get 'root/second', as: 'aaa' #:as => 'aaa'
 ```
 
-##### 关于约束 '未完成'
+#### 关于约束 '未完成'
 * [HTTP 方法约束](https://ruby-china.github.io/rails-guides/routing.html#http-verb-constraints)
 * [片段约束](https://ruby-china.github.io/rails-guides/routing.html#segment-constraints)
 * [请求约束](https://ruby-china.github.io/rails-guides/routing.html#request-based-constraints)
 * [高级约束](https://ruby-china.github.io/rails-guides/routing.html#advanced-constraints)
 * [路由通配符和通配符片段](https://ruby-china.github.io/rails-guides/routing.html#route-globbing-and-wildcard-segments)
 
-##### 重定向：[资料](https://ruby-china.github.io/rails-guides/routing.html#redirection)
-  '未完成'
+#### 重定向：[资料](https://ruby-china.github.io/rails-guides/routing.html#redirection)
+'未完成'
+
 ---
 
-##### 资源路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#resource-routing-the-rails-default)
+#### 资源路由：[资料](https://ruby-china.github.io/rails-guides/routing.html#resource-routing-the-rails-default)
 ```ruby
 resources :books
 
@@ -51,7 +52,7 @@ resources :books
 resources :images, :vedios, :pages
 ```
 
-##### 增加资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#adding-more-restful-actions)
+#### 增加资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#adding-more-restful-actions)
 
 `注意：当一个资源增加了多个动作时，就要考虑是否要新建一个资源了`
 
@@ -77,15 +78,15 @@ resources :books{
 }
 ```
 
-##### 屏蔽部份资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#restricting-the-routes-created)
+#### 屏蔽部份资源动作：[资料](https://ruby-china.github.io/rails-guides/routing.html#restricting-the-routes-created)
 `如果应用中有很多资源式路由，通过 :only 和 :except 选项，我们可以只生成实际需要的路由，这样可以减少内存使用、加速路由处理过程。`
 ```ruby
 resources :photos, only: [:index, :show]
 resources :photos, except: :destroy
 ```
-##### 命名空间：[资料](https://ruby-china.github.io/rails-guides/routing.html#controller-namespaces-and-routing)
-  ‘如果想在命名空间代码块中使用另一个控制器命名空间，可以指定控制器的绝对路径，例如 get '/foo' => '/foo#index'。’
-  ·命名空间不会影响路由的辅助名称·
+#### 命名空间：[资料](https://ruby-china.github.io/rails-guides/routing.html#controller-namespaces-and-routing)
+    如果想在命名空间代码块中使用另一个控制器命名空间，可以指定控制器的绝对路径，例如 get '/foo' => '/foo#index'。
+    命名空间不会影响路由的辅助名称
 ```ruby
 # 命名，url，控制器都带空间名
 namespace :art{
@@ -100,15 +101,14 @@ end
 resources :books, module: 'art' # 效果同上
 
 # 让控制器使用带命名空间的URL
- scope '/art' do
-    resources :books
- end
+scope :art {
+  resources :books    # => books GET    /art/books(.:format)          books#index
+}
 # 对于单个资源的情况，还可以这样声明：
-resources :books, path: '/art'
-
+resources :books, path: :art
 ```
 
-##### 嵌套资源：[资料](https://ruby-china.github.io/rails-guides/routing.html#nested-resources)
+#### 嵌套资源：[资料](https://ruby-china.github.io/rails-guides/routing.html#nested-resources)
 
 
 
