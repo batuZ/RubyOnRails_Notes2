@@ -6,7 +6,7 @@
 
 ---
 
-### 1.认识NPOI
+### [1.认识NPOI](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#1%E8%AE%A4%E8%AF%86npoi-1)
 
   #### 1.1 什么是NPOI
 
@@ -204,6 +204,65 @@
 ---
 
 ### 2. 使用NPOI生成xls文件
+
+作者：Tony Qu | [NPOI官方网站：http://npoi.codeplex.com/](http://npoi.codeplex.com/)
+
+    创建Workbook说白了就是创建一个Excel文件，当然在NPOI中更准确的表示是在内存中创建一个Workbook对象流。
+
+    本节作为第2章的开篇章节，将做较为详细的讲解，以帮助NPOI的学习者更好的理解NPOI的组成和使用。
+
+    NPOI.HSSF是专门负责Excel BIFF格式的命名空间，
+    供开发者使用的对象主要位于NPOI.HSSF.UserModel和NPOI.HSSF.Util命名空间下，
+    下面我们要讲到的Workbook的创建用的就是NPOI.HSSF.UserModel.HSSFWorkbook类，这个类负责创建.xls文档。
+
+    在开始创建Workbook之前，我们先要在项目中引用一些必要的NPOI assembly，如下所示：
+    
+    NPOI.dll
+
+    NPOI.POIFS.dll
+
+    NPOI.HSSF.dll
+
+    NPOI.Util.dll
+    
+    
+    要创建一个新的xls文件其实很简单，只要我们初始化一个新的`HSSFWorkbook`实例就行了，如下所示：
+    
+```c#
+using NPOI.HSSF.UserModel;
+
+...
+
+HSSFWorkbookhssfworkbook =newHSSFWorkbook();
+```
+    是不是很方便啊，没有任何参数或设置，但这么创建有一些限制，
+    这样创建出来的Workbook在Excel中打开是会报错的，
+    因为Excel规定一个Workbook必须至少带1个Sheet，
+    这也是为什么在Excel界面中，新建一个Workbook默认都会新建3个Sheet。
+    所以必须加入下面的创建Sheet的代码才能保证生成的文件正常：
+    
+    
+```c#
+HSSFSheetsheet = hssfworkbook.CreateSheet("newsheet");
+
+// 如果要创建标准的Excel文件，即拥有3个Sheet，可以用下面的代码：
+
+hssfworkbook.CreateSheet("Sheet1");
+
+hssfworkbook.CreateSheet("Sheet2");
+
+hssfworkbook.CreateSheet("Sheet3");
+
+// 最后就是把这个HSSFWorkbook实例写入文件了，代码也很简单，如下所示：
+
+FileStreamfile =new FileStream(@"test.xls", FileMode.Create);
+
+hssfworkbook.Write(file);
+
+file.Close();
+
+ 
+```
 
 #### 2.1 创建基本内容
 
