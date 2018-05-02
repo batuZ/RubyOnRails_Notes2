@@ -205,6 +205,10 @@
 
 ### 2. 使用NPOI生成xls文件
 
+#### 2.1 创建基本内容
+
+##### 2.1.1 创建Workbook和Sheet
+
 作者：Tony Qu | [NPOI官方网站：http://npoi.codeplex.com/](http://npoi.codeplex.com/)
 
     创建Workbook说白了就是创建一个Excel文件，当然在NPOI中更准确的表示是在内存中创建一个Workbook对象流。
@@ -233,7 +237,7 @@ using NPOI.HSSF.UserModel;
 
 ...
 
-HSSFWorkbookhssfworkbook =newHSSFWorkbook();
+HSSFWorkbook hssfworkbook = new HSSFWorkbook();
 ```
     是不是很方便啊，没有任何参数或设置，但这么创建有一些限制，
     这样创建出来的Workbook在Excel中打开是会报错的，
@@ -243,7 +247,7 @@ HSSFWorkbookhssfworkbook =newHSSFWorkbook();
     
     
 ```c#
-HSSFSheetsheet = hssfworkbook.CreateSheet("newsheet");
+HSSFSheet sheet = hssfworkbook.CreateSheet("newsheet");
 
 // 如果要创建标准的Excel文件，即拥有3个Sheet，可以用下面的代码：
 
@@ -255,23 +259,93 @@ hssfworkbook.CreateSheet("Sheet3");
 
 // 最后就是把这个HSSFWorkbook实例写入文件了，代码也很简单，如下所示：
 
-FileStreamfile =new FileStream(@"test.xls", FileMode.Create);
+FileStream file = new FileStream(@"test.xls", FileMode.Create);
 
 hssfworkbook.Write(file);
 
 file.Close();
+```
+    这里假设文件名是test.xls，，在创建完FileStream之后，直接调用HSSFWorkbook类的Write方法就可以了。
 
- 
+    最后你可以打开test.xls文件确认一下，是不是有3个空的Sheet。
+
+    相关范例请见NPOI 1.2正式版中的CreateEmptyExcelFile项目。
+    
+##### 2.1.2 创建DocumentSummaryInformation和SummaryInformation
+作者：Tony Qu | [NPOI官方网站：http://npoi.codeplex.com/](http://npoi.codeplex.com/)
+
+     DocummentSummaryInformation和SummaryInformation并不是Office文件的专利，
+     只要是OLE2格式，都可以拥有这两个头信息，主要目的就是为了在没有完整读取文件数据的情况下获得文件的摘要信息，
+     同时也可用作桌面搜素的依据。
+     
+     要了解DocummentSummaryInformation的全部属性请见http://msdn.microsoft.com/en-us/library/aa380374(VS.85).aspx；
+     要了解SummaryInformation的全部属性请见http://msdn.microsoft.com/en-us/library/aa369794(VS.85).aspx。
+     
+```c#
+using NPOI.HSSF.UserModel;
+
+using NPOI.HPSF;
+
+using NPOI.POIFS.FileSystem;
+
+// 其中与DocummentSummaryInformation和SummaryInformation密切相关的是HPSF命名空间。
+
+// 首先创建Workbook
+
+HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+
+// 然后创建DocumentSummaryInformation
+
+DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
+
+dsi.Company ="NPOI Team";
+
+// 再创建SummaryInformation
+
+SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
+
+si.Subject ="NPOI SDK Example";
+
+// 因为是范例，这里仅各设置了一个属性，其他都没有设置。
+
+// 现在我们把创建好的对象赋给Workbook，这样才能保证这些信息被写入文件。
+
+hssfworkbook.DocumentSummaryInformation= dsi;
+
+hssfworkbook.SummaryInformation= si;
 ```
 
-#### 2.1 创建基本内容
-
-##### 2.1.1 创建Workbook和Sheet
-
-##### 2.1.2 创建DocumentSummaryInformation和SummaryInformation
-
+    最后和2.1.1节一样，我们把Workbook通过FileStream写入文件。
+    相关范例请见NPOI 1.2正式版中的CreatePOIFSFileWithProperties
 ##### 2.1.3 创建单元格
+    用过Excel的人都知道，单元格是Excel最有意义的东西，我们做任何操作恐怕都要和单元格打交道。
+    在Excel中我们要添加一个单元格只需要点击任何一个单元格，然后输入内容就是了，
+    但是Excel底层其实没有这么简单，不同的单元格是有不同的类型的，
+    比如说数值单元格是用NumberRecord表示，文本单元格是用LabelSSTRecord表示，
+    空单元格是用BlankRecord表示。这也就意味着，在设置单元格时，
+    你必须告诉NPOI你需要创建哪种类型的单元格。
+    要创建单元格首先要创建单元格所在的行，比如，下面的代码创建了第0行：
+```c#
+HSSFSheet sheet1 = hssfworkbook.CreateSheet("Sheet1");
+HSSFRow row1=sheet1.CreateRow(0);
+// 行建好了，就可以建单元格了，比如创建A1位置的单元格：
+row1.CreateCell(0).SetCellValue(1);
+```
+    这里要说明一下，SetCellValue有好几种重载，
+    你可以设置单元格为bool、double、DateTime、string和HSSFRichTextString类型。
+    其中对于string类型的重载调用的就是HSSFRichTextString类型的重载，
+    所以是一样的，HSSFRichTextString可用于有字体或者Unicode的文本。
 
+    如果你觉得每一行要声明一个HSSFRow很麻烦，可以用下面的方式：
+```c#
+sheet1.CreateRow(0).CreateCell(0).SetCellValue("This is a Sample");
+// 这么用有个前提，那就是第0行还没创建过，否则得这么用：
+sheet1.GetRow(0).CreateCell(0).SetCellValue("This is a Sample");
+```
+    注意：这里的行在Excel里是从1开始的，但是NPOI内部是从0开始的；
+    列在Excel里面是用字母表示的，而NPOI中也是用从0开始的数字表示的，所以要注意转换。
+    
+    
 ##### 2.1.5 创建批注
 
 ##### 2.1.6 创建页眉和页脚
