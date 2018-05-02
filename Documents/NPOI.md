@@ -232,7 +232,7 @@
     
     要创建一个新的xls文件其实很简单，只要我们初始化一个新的`HSSFWorkbook`实例就行了，如下所示：
     
-```c#
+```csharp
 using NPOI.HSSF.UserModel;
 
 ...
@@ -245,7 +245,7 @@ HSSFWorkbook hssfworkbook = new HSSFWorkbook();
     这也是为什么在Excel界面中，新建一个Workbook默认都会新建3个Sheet。
     所以必须加入下面的创建Sheet的代码才能保证生成的文件正常：
     
-```c#
+```csharp
 HSSFSheet sheet = hssfworkbook.CreateSheet("newsheet");
 
 // 如果要创建标准的Excel文件，即拥有3个Sheet，可以用下面的代码：
@@ -280,7 +280,7 @@ file.Close();
      要了解DocummentSummaryInformation的全部属性请见http://msdn.microsoft.com/en-us/library/aa380374(VS.85).aspx；
      要了解SummaryInformation的全部属性请见http://msdn.microsoft.com/en-us/library/aa369794(VS.85).aspx。
      
-```c#
+```csharp
 using NPOI.HSSF.UserModel;
 
 using NPOI.HPSF;
@@ -324,7 +324,7 @@ hssfworkbook.SummaryInformation= si;
     空单元格是用BlankRecord表示。这也就意味着，在设置单元格时，
     你必须告诉NPOI你需要创建哪种类型的单元格。
     要创建单元格首先要创建单元格所在的行，比如，下面的代码创建了第0行：
-```c#
+```csharp
 HSSFSheet sheet1 = hssfworkbook.CreateSheet("Sheet1");
 HSSFRow row1=sheet1.CreateRow(0);
 // 行建好了，就可以建单元格了，比如创建A1位置的单元格：
@@ -336,7 +336,7 @@ row1.CreateCell(0).SetCellValue(1);
     所以是一样的，HSSFRichTextString可用于有字体或者Unicode的文本。
 
     如果你觉得每一行要声明一个HSSFRow很麻烦，可以用下面的方式：
-```c#
+```csharp
 sheet1.CreateRow(0).CreateCell(0).SetCellValue("This is a Sample");
 // 这么用有个前提，那就是第0行还没创建过，否则得这么用：
 sheet1.GetRow(0).CreateCell(0).SetCellValue("This is a Sample");
@@ -370,7 +370,7 @@ row1 |第1个单元格的行号
 col2 |第2个单元格的列号
 row2 |第2个单元格的行号
 
-```c#
+```csharp
 // 如果我们打算让注释显示在B3和E5之间，就应该这么写：
 
 HSSFPatriarch patr = sheet.CreateDrawingPatriarch();
@@ -409,7 +409,7 @@ cell.CellComment= comment1;
 
     参考代码如下：
     
-```c#
+```csharp
 HSSFSheet s1= hssfworkbook.CreateSheet("Sheet1");
 s1.CreateRow(0).CreateCell(1).SetCellValue(123);
 
@@ -434,7 +434,7 @@ s1.Footer.Right="created by Tony Qu（瞿杰）";
 
     使用NPOI时要注意，所有的格式都是通过CellStyle.DataFormat赋给单元格的，而不是直接赋给单元格。
     
-```c#
+```csharp
 /// 案例一 日期格式
 /// 假设我们现在需要显示的日期的格式为2008年5月5日，可以用下面的代码生成：
 
@@ -459,7 +459,7 @@ cell.CellStyle=cellStyle;
     然后使用format.GetFormat来获取相应的格式，只要是Excel支持的格式表示方式，
     这种方式都能够实现。
     
-```c#
+```csharp
 /// 案例二保留2位小数
 /// 假设我们有个单元格的值为1.2，怎么显示成1.20呢？在Excel中可以用“0.00”来表示，所以下面的代码就能完成：
 
@@ -481,7 +481,7 @@ cell.CellStyle= cellStyle;
 ```
     这里与上面有所不同，用的是HSSFDataFormat.GetBuiltinFormat()方法，之所以用这个，是因为0.00是Excel内嵌的格式
 
-```c#
+```csharp
 ///案例三货币格式
 ///货币格式在金融的项目中经常用到，比如说人民币符号¥，美元符号$等，这里可以用下面的代码表示：
 
@@ -499,7 +499,7 @@ cell2.CellStyle= cellStyle2;
 ```
     注意，这里还加入了千分位分隔符，所以是#,##，至于为什么这么写，你得去问微软，呵呵。
     
-```c#
+```csharp
 ///案例四百分比
 ///百分比在报表中也很常用，其实基本上和上面一样，只是格式表示是0.00%，代码如下：
 
@@ -507,7 +507,7 @@ cellStyle4.DataFormat= HSSFDataFormat.GetBuiltinFormat("0.00%");
 ```
     由于这里是内嵌格式，所以直接用HSSFDataFormat.GetBuiltinFormat即可。
 
-```c#
+```csharp
 /// 案例五中文大写
 /// 在表示金额时，我们时常会用到，我也见过不少兄弟实现了数字转中文大小写的工具类，
 /// 以后你可以尝试让Excel去处理这一切，代码和刚才差不多，也是改格式的表示：
@@ -518,7 +518,7 @@ cellStyle6.DataFormat= format.GetFormat("[DbNum2][$-804]0");
 ```
     由于是自定义格式，所以用了HSSFDataFormat.GetFormat，相信你对这两种获取格式的形式的区别越来越熟悉了。
     
-```c#
+```csharp
 /// 案例六科学计数法
 /// 这东西数学课上我们都学过，虽然用的不多，但是既然Excel支持，这里也提一下：
 
@@ -552,12 +552,12 @@ LastRow|区域中最后一个单元格的行号|
 LastColumn|区域中最后一个单元格的列号|
 
 由于单元格的合并都是在表的基础上建立的，所以我们得先建Sheet：
-```c#
+```csharp
 HSSFWorkbook hssfworkbook =new HSSFWorkbook();
 HSSFSheet sheet = hssfworkbook.CreateSheet("newsheet");
 ```
 接下来我们根据实际场景来做一些演示。
-```c#
+```csharp
 /// 场景一标题行的合并
 /// 这种场景是最常见的，比如说我们要建立一张销售情况表，英文叫Sales Report
 /// 我们先设置居中和字体样式，这里我们采用20号字体，代码如下：
@@ -584,7 +584,7 @@ cell.CellStyle= style;
 
 sheet.AddMergedRegion(new Region(0, 0, 0,5));
 ```
-```c#
+```csharp
 /// 场景二多行合并
 /// 看完场景一，你可不要认为多行合并就需要一行一行做，其实也只需要一行代码，
 /// 比如说我们要把C3:E5合并为一个单元格，那么就可以用下面的代码：
@@ -615,7 +615,7 @@ row.CreateCell(0).SetCellValue("Test");
 HSSFCellStylestyle=hssfworkbook.CreateCellStyle();
 ```
 
-```c#
+```csharp
 /// 水平对齐
 /// 这里用的是HSSFCellStyle.Alignment，默认值自然是常规，即HSSFCellStyle.ALIGN_GENERAL。
 
@@ -644,7 +644,7 @@ style.Alignment= HSSFCellStyle.ALIGN_JUSTIFY;
 style.Alignment= HSSFCellStyle.ALIGN_FILL;
 ```
 注意：以上选项仅当有足够的宽度时才能产生效果，不设置宽度恐怕看不出区别。
-```c#
+```csharp
 ///垂直对齐
 ///这里用的是HSSFCellStyle.VerticalAlignment，默认值为居中，即HSSFCellStyle.VERTICAL_CENTER
 
@@ -665,7 +665,7 @@ style.VerticalAlignment=HSSFCellStyle.VERTICAL_BOTTOM
 style.VerticalAlignment=HSSFCellStyle.VERTICAL_JUSTIFY
 ```
 注意：以上选项仅当有足够的高度时才能产生效果，不设置高度恐怕看不出区别。
-```c#
+```csharp
 ///自动换行
 ///自动换行翻译成英文其实就是Wrap的意思，所以这里我们应该用WrapText属性，这是一个布尔属性
 
