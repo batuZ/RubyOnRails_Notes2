@@ -8,17 +8,17 @@
 
 ### [1.认识NPOI](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#1%E8%AE%A4%E8%AF%86npoi-1)
 
-  #### 1.1 什么是NPOI
+  #### [1.1 什么是NPOI](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#11-%E4%BB%80%E4%B9%88%E6%98%AFnpoi-1)
 
-  #### 1.2 版权说明
+  #### [1.2 版权说明](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#12-%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E-1)
 
-  #### 1.3 相关资源
+  #### [1.3 相关资源](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#13-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90-1)
 
-  #### 1.4 团队介绍
+  #### [1.4 团队介绍](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#14-%E5%9B%A2%E9%98%9F%E4%BB%8B%E7%BB%8D-1)
 
-  #### 1.5 回顾与展望
+  #### [1.5 回顾与展望](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#15-%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B-1)
 
-  #### 1.6 NPOI 1.2中各Assembly的作用
+  #### [1.6 NPOI 1.2中各Assembly的作用](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#16-npoi-12%E4%B8%AD%E5%90%84assembly%E7%9A%84%E4%BD%9C%E7%94%A8-1)
 
 ---
 
@@ -46,9 +46,9 @@
 
 ##### [2.2.3 对齐相关设置](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#223-%E5%AF%B9%E9%BD%90%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE-1)
 
-##### 2.2.4 使用边框
+##### [2.2.4 使用边框](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#224-%E4%BD%BF%E7%94%A8%E8%BE%B9%E6%A1%86-1)
 
-##### 2.2.5 字体设置
+##### [2.2.5 字体设置](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/NPOI.md#225-%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE-1)
 
 ##### 2.2.6 背景和纹理
 
@@ -596,11 +596,11 @@ sheet.AddMergedRegion(new Region(2, 2, 4,4));
 ```
 
 ##### 2.2.3 对齐相关设置
-    本节将围绕“对齐”选项卡中的设置展开，虽然实际上你会发现该选项卡中的很多设置和对齐没有什么关系。 
-    合并单元格已经在2.2.2节讲过了，这里就不提了。 
-    
-    首先我们用代码创建必要的单元格，代码如下：
-    
+本节将围绕“对齐”选项卡中的设置展开，虽然实际上你会发现该选项卡中的很多设置和对齐没有什么关系。 
+合并单元格已经在2.2.2节讲过了，这里就不提了。 
+
+首先我们用代码创建必要的单元格，代码如下：
+
 ```csharp
 HSSFWorkbookhssfworkbook =new HSSFWorkbook();
 
@@ -690,8 +690,153 @@ style.Rotation=(short)90;
 
 
 ##### 2.2.4 使用边框
+边框和其他单元格设置一样也是在HSSFCellStyle上操作的，HSSFCellStyle有2种和边框相关的属性，分别是:
+
+边框相关属性 | 说明 | 范例|
+---|---|---|
+Border+方向 |边框类型 |BorderTop, BorderBottom,BorderLeft, BorderRight
+方向+BorderColor |边框颜色 |TopBorderColor,BottomBorderColor, LeftBorderColor, RightBorderColor
+
+其中边框类型分为以下几种：
+
+
+边框范例图|对应的静态值|
+---|---|
+||HSSFCellStyle.BORDER_DOTTED|
+||HSSFCellStyle.BORDER_HAIR|
+||HSSFCellStyle.BORDER_DASH_DOT_DOT|
+||HSSFCellStyle.BORDER_DASH_DOT|
+||HSSFCellStyle.BORDER_DASHED|
+||HSSFCellStyle.BORDER_THIN|
+||HSSFCellStyle.BORDER_MEDIUM_DASH_DOT_DOT|
+||HSSFCellStyle.BORDER_SLANTED_DASH_DOT|
+||HSSFCellStyle.BORDER_MEDIUM_DASH_DOT|
+||HSSFCellStyle.BORDER_MEDIUM_DASHED|
+||HSSFCellStyle.BORDER_MEDIUM|
+||HSSFCellStyle.BORDER_THICK|
+||HSSFCellStyle.BORDER_DOUBLE|
+
+至于颜色那就很多了，全部在`HSSFColor`下面，如`HSSFColor.GREEN`,`HSSFColor.RED`，都是静态实例，可以直接引用。
+下面我们假设我们要把一个单元格的四周边框都设置上，可以用下面的代码：
+```csharp
+HSSFSheet sheet = hssfworkbook.CreateSheet("newsheet");
+
+// Create arow and put some cells in it. Rows are 0 based.
+
+HSSFRow row =sheet.CreateRow(1);
+
+// Create acell and put a value in it.
+
+HSSFCell cell= row.CreateCell(1);
+
+// Style thecell with borders all around.
+
+HSSFCellStyle style = hssfworkbook.CreateCellStyle();
+
+style.BorderBottom=HSSFCellStyle.BORDER_THIN;
+
+style.BorderLeft=HSSFCellStyle.BORDER_THIN;
+
+style.BorderRight=HSSFCellStyle.BORDER_THIN;
+
+style.BorderTop= HSSFCellStyle.BORDER_THIN ;
+
+cell.CellStyle=style;
+```
+这段代码使用了最普通的细边框，使得这个单元格看上去像块空心砖头。
+
+`注意：这里我们没有设置边框的颜色，但这不会影响最终的效果，因为Excel会用默认的黑色给边框上色。`
+
+如果要设置颜色的话，也很简单，如下：
+```csharp
+style.BottomBorderColor=HSSFColor.GREEN.index;
+```
+以上代码将底部边框设置为绿色，要注意，不是直接把HSSFColor.GREEN赋给XXXXBorderColor属性，而是把index的值赋给它。
+
 
 ##### 2.2.5 字体设置
+在设置字体之前，我们首先要做的就是创建字体对象，这和创建数字格式很相似。
+```csharp
+HSSFFont font= hssfworkbook.CreateFont();
+```
+这句话会在Excel文件内部创建相应的`FontRecord`，所以你不用客户因为自己机器上的Excel没有相应的字体设置而导致设置丢失。
+
+字体在设置完成后，我们就可以把它赋给单元格样式，代码如下：
+```csharp
+HSSFCellStyle style1 = hssfworkbook.CreateCellStyle();
+
+style1.SetFont(font);
+
+cell1.CellStyle=style1;
+```
+这里的cell1是HSSFCell的一个实例。
+
+好了，下面我们就开始对字体进行设置。
+
+
+字体名称
+这里的字体名称是通过`HSSFFont.FontName`进行设置的，至于具体的名称，只要是常用字体都可以，比如说`Arial`, `Verdana`等，当然也可以是中文字体名，如宋体、黑体等。不过设置字体名称有个前提，那就是假设打开这个xls文件的客户机上有这种字体，如果没有，Excel将使用默认字体。
+下面就是设置字体名称为“宋体”的代码：
+```csharp
+font.FontName="宋体";
+```
+
+
+字号
+与字号有关的属性有两个，一个是`FontHeight`，一个是`FontHeightInPoints`。区别在于，`FontHeight`的值是`FontHeightInPoints`的20倍，通常我们在Excel界面中看到的字号，比如说12，对应的是`FontHeightInPoints`的值，而`FontHeight`要产生12号字体的大小，值应该是240。所以通常建议你用`FontHeightInPoint`属性。
+如果要设置字号为12，代码就是
+```csharp
+font.FontHeightInPoints= 12;
+```
+
+
+字体颜色
+这里可能会与`CellStyle`上的`ForegroundColor`和`BackgroundColor`产生混淆，其实所有的字体颜色都是在`HSSFFont`的实例上设置的，`CellStyle`的`ForegroundColor`和`BackgroundColor`分别指背景填充色和填充图案的颜色，和文本颜色无关。
+要设置字体颜色，我们可以用HSSFFont.Color属性，颜色可以通过HSSFColor获得，代码如下所示：
+```csharp
+font.Color =HSSFColor.RED.index;
+```
+这行代码把文本设置为红色。
+
+
+下划线
+
+通常我们所说的下划线都是单线条的，其实Excel支持好几种下划线，如下所示：
+
+类型对|应的值|
+---|---|
+单下划线|HSSFFont.U_SINGLE|
+双下划线|HSSFFont.U_DOUBLE|
+会计用单下划线|HSSFFont.U_SINGLE_ACCOUNTING|
+会计用双下划线|HSSFFont.U_DOUBLE_ACCOUNTING|
+无下划线|HSSFFont.U_NONE|
+
+当你要设置下划线时，可以用HSSFFont.Underline属性，这是一个byte类型的值，例如
+```csharp
+font.Underline=HSSFFont.U_SINGLE
+```
+这行代码就是设置单下划线的代码。
+
+
+上标下标
+
+设置这东西可以用HSSFFont.TypeOffset属性，值有以下几种：
+
+TypeOffset的值|说明|
+---|---|
+HSSFFont.SS_SUPER|上标|
+HSSFFont.SS_SUB|下标|
+HSSFFont.SS_NONE|普通，默认值|
+
+所以如果你要上标的话，可以用下面的代码：
+```csharp
+font.TypeOffset=HSSFFont.SS_SUPER;
+```
+
+
+删除线
+
+设置这东西可以用`HSSFFont.IsStrikeout`属性，当为true时，表示有删除线；为false则表示没有删除线。
 
 ##### 2.2.6 背景和纹理
 
