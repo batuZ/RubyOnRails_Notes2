@@ -1,5 +1,6 @@
 # Asset_Pipeline 静态资源文件管理
 [官方资料](https://ruby-china.github.io/rails-guides/asset_pipeline.html#precompiling-assets)
+ |
 [Rails目录结构](https://www.jianshu.com/p/4078e0bf9c20)
 ### 配置文件 Rails.root/config/initializers/assets.rb
 
