@@ -9,3 +9,5 @@
 - [x] [rails 操作](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/rails.md#rails%E6%93%8D%E4%BD%9C)
 - [x] [ruby 控制台](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/rubyControl.md#rails-controlc%E6%93%8D%E4%BD%9C)
 - [x] [Asset Pipeline](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/Asset_Pipeline.md#asset_pipeline-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86)
+
+  [Rails部分辅助方法]  http://314858770.iteye.com/blog/691999
