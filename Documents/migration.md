@@ -5,6 +5,5 @@
 
 ### migration 命令结构
 
-	例： rails g migration AddNameToPerson name:string age:integer
-
-		|	固定部分		  |    名称部分    |        属性部分       |
+例： rails g migration AddNameToPerson name:string age:integer
+   |	固定部分		  |    名称部分    |        属性部分       |
