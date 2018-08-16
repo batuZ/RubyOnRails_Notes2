@@ -95,3 +95,6 @@ end
 
 rake db:seed
 ```
+
+
+  [Rails部分辅助方法]  http://314858770.iteye.com/blog/691999
