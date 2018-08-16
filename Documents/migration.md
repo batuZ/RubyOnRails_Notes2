@@ -138,10 +138,10 @@ Migrations作用
 
 ## 其它
 
-db/schema.rb 是迁移产生的总结性文件，描述当前数据库结构，与migration不同的是它没有了版本变化，但条理更清淅
-db/seed.rb 是种子文件，在构建数据库的同时把定制数据一起塞进数据库
-以上两个文件都通过rails db:setup 执行
+	db/schema.rb 是迁移产生的总结性文件，描述当前数据库结构，与migration不同的是它没有了版本变化，但条理更清淅
+	db/seed.rb 是种子文件，在构建数据库的同时把定制数据一起塞进数据库
+	以上两个文件都通过rails db:setup 执行
 
-rails db:setup 任务用于创建数据库，加载数据库模式，并使用种子数据初始化数据库。
-rails db:rollback 回滚
-rails db:reset 任务用于删除并重新创建数据库，其功能相当于 rails db:drop db:setup。
+	rails db:setup 任务用于创建数据库，加载数据库模式，并使用种子数据初始化数据库。
+	rails db:rollback 回滚
+	rails db:reset 任务用于删除并重新创建数据库，其功能相当于 rails db:drop db:setup。
