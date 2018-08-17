@@ -136,6 +136,7 @@ console.rb：
 ```
     
 更懒的方法：
+
     还是建个空的console.rb文件
     然后在 ./config/environments/development.rb 文件中加一个函数，如下：
 ``` ruby
