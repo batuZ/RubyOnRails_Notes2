@@ -1,7 +1,5 @@
 ## rails control(c)操作
 
-* [官方资料](https://ruby-china.github.io/rails-guides/command_line.html#rails-console)
-* [其它资料](https://www.cnblogs.com/Tommy-Yu/p/4141122.html)
 ---
     rails console
     执行 console 命令后，可以在命令行中与 Rails 应用交互。
@@ -125,4 +123,14 @@ app.post('/foo', {:this => "that", :items => ["bar", "baz"]}, {"X-Do-Something" 
     修改console.rb的内容,不需要重启rails console,再试一下输入 load 'console.rb'
     
     
+``` ruby 
+
+    # 查表中数据数量
+    p "Person.all.count :#{Person.all.count}"
+    p "Car.all.count :#{Car.all.count}"
+
+    # 模拟请求，只能返回状态
+    app.get 'http://localhosh:3000/person/1'
+
+```
     
