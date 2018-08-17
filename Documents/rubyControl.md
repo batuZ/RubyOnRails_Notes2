@@ -117,19 +117,20 @@ app.post('/foo', {:this => "that", :items => ["bar", "baz"]}, {"X-Do-Something" 
 ---
 ##### 通过调用.rb代替在console的操作
 
-    在model文件夹或其它任意paths包含的目录中创建一个.rb文件，例如：console.rb
+    在model文件夹或工程根目录中创建一个.rb文件，例如：console.rb
     在console.rb写些测试命令，保存，例如：puts 'is this used ...'
     OK,在控制台或终端重新启动 rails console,输入 load 'console.rb'
     修改console.rb的内容,不需要重启rails console,再试一下输入 load 'console.rb'
     
-    
+
+console.rb：
 ``` ruby 
 
     # 查表中数据数量
     p "Person.all.count :#{Person.all.count}"
     p "Car.all.count :#{Car.all.count}"
 
-    # 模拟请求，只能返回状态
+    # 模拟请求，只能返回状态，返回内容可以在controller或API里puts
     app.get 'http://localhosh:3000/person/1'
 
 ```
