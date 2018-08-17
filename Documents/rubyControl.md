@@ -26,6 +26,9 @@ hlm.save        #返回true为保存成功
 Book.new(title:'红楼梦',pages:4800)
 _.save
 
+//创建成功后直接塞进数据库，不需要save
+Book.create(title:'红楼梦',pages:4800)
+
 // 获取记录
 Book.all        #返回全部实例集合
 Book.find(2)    #返回id为2的实例对象
@@ -56,7 +59,7 @@ pp hlm
 ```
 
 ---
-##### 在control中模拟http请求
+##### 在console中模拟http请求
     ActionController::Integration::Session在script/console的console_app中，
     使用的句柄是app，返回ActionController::Integration::Session的一个实例
 ```ruby
@@ -93,3 +96,15 @@ app.get '/books/12'
     xhr
     xml_http_request
 ```
+
+
+---
+##### 通过调用.rb代替在console的操作
+
+    在model文件夹或其它任意paths包含的目录中创建一个.rb文件，例如：console.rb
+    在console.rb写些测试命令，保存，例如：puts 'is this used ...'
+    OK,在控制台或终端重新启动 rails console,输入 load 'console.rb'
+    修改console.rb的内容,不需要重启rails console,再试一下输入 load 'console.rb'
+    
+    
+    
