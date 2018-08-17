@@ -121,8 +121,8 @@ app.post('/foo', {:this => "that", :items => ["bar", "baz"]}, {"X-Do-Something" 
     在console.rb写些测试命令，保存，例如：puts 'is this used ...'
     OK,在控制台或终端重新启动 rails console,输入 load 'console.rb'
     修改console.rb的内容,不需要重启rails console,再试一下输入 load 'console.rb'
+    ps:在工程的其它位置也可以，但调用要带上相对路径，比如在./test下建的console.rb，用load './test/console.rb'调用
     
-
 console.rb：
 ``` ruby 
 
@@ -134,4 +134,14 @@ console.rb：
     app.get 'http://localhosh:3000/person/1'
 
 ```
+    
+更懒的方法：
+    还是建个空的console.rb文件
+    然后在 ./config/environments/development.rb 文件中加一个函数，如下：
+``` ruby
+def run
+    load 'console.rb'
+end
+```
+    现在就有了一个全局的 run 函数，可以在 rails console 里随时调
     
