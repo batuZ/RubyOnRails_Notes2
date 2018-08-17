@@ -14,6 +14,10 @@ rails control          
 rails c                 #默认进入development模式
 rails c test            #进入test模式
 rails c production      #进入production模式
+rails s                 #退出时回滚对数据库的所有操作
+
+//重新加载，相当于退出重进rails c,代码更新时用
+>> reload!
 
 // 创建一条记录
 Book.new(title:'红楼梦',pages:4800)
@@ -72,6 +76,20 @@ app.get '/books/12'
 # =>   Rendered books/show.html.erb within layouts/application (0.7ms)
 # => Completed 200 OK in 28ms (Views: 21.7ms | ActiveRecord: 0.3ms)
 # => 200
+
+
+app.https!  
+app.https?
+
+app.get('/my/path')  
+
+#If you want to put or post to a URL there are also methods for that. 
+#You can copy/paste the parameters exactly as they are displayed in your Rails production log:  
+app.post('/foo', {"this" => "that", "items" => ["bar", "baz"]})  
+app.put('/foo', {"this" => "that", "items" => ["bar", "baz"]})  
+
+#If you want to sent a custom header, you can add an optional third parameter:  
+app.post('/foo', {:this => "that", :items => ["bar", "baz"]}, {"X-Do-Something" => "yes"}) 
 ```
 ```
     其它请求
