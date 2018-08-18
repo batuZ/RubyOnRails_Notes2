@@ -12,7 +12,7 @@ Migrations作用
 	以下称这些迁移rb文件为 'migrate' ，称创建命令为 'migration'
 
 
-## migration 
+## migration 是通过Ruby代码构建migrate文件的工具，用来管理构建数据库的过程，更适合团队协作
 
 #### 命令结构
 
@@ -23,33 +23,6 @@ Migrations作用
 	名称部分：【Add + 字段名 + 表名】，驼峰（必须），add是动作（必须），表名是目标（必须），字段名只是用来说明要做的事，实际内容是由后面的属性部份决定的
 	属性部分：【字段名：类型{修饰}】 实际的操作内容，如果操作是由名称里的作动决定的，Add,Remove,create,
 
-#### 常用的migration：
-
-表操作:
-
-	create_table(name, options) 新增表
-	drop_table(name) 移除表
-	rename_table(old_name, new_name) 修改表名称
-	change_table 修改表字段
-
-字段操作:
-
-	add_column(table, column, type, options) 新增一个字段
-	rename_column(table, old_column_name, new_column_name) 修改字段名称
-	change_column(table, column, type, options) 修改字段的类型(type)
-	remove_column(table , column) 移除字段
-
-索引:
-
-	add_index(table, columns, options) 新增索引
-	remove_index(table, index) 移除索引
-	`options 可为空，或是:unique => true表示这是唯一。`
-
-外键:
-
-	add_foreign_key(from_table, to_table, options)
-	remove_foreign_key(from_table, to_table, options)
-	options 可为空，或是可自定:column => from_table_foreign_key_column (默认是{to_table}_id)和:primary_key => to_table_primary_key_column(默认是id)。
 
 
 #### 例：
@@ -116,28 +89,56 @@ Migrations作用
 	//修改字段, 把 products 数据表的 part_number 字段修改为 :text 字段
 	change_column :products, :part_number, :text
 
-	// 更多方法
-	add_column
-	add_foreign_key
-	add_index
+
+#### 常用的migratie in def change：
+	
+表操作:
+
+	create_table(name, options) 新增表
+	drop_table(name) 移除表
+	rename_table(old_name, new_name) 修改表名称
+	change_table 修改表字段
+
+字段操作:
+
+	add_column(table, column, type, options) 新增一个字段
+	rename_column(table, old_column_name, new_column_name) 修改字段名称
+	change_column(table, column, type, options) 修改字段的类型(type)
+	remove_column(table , column) 移除字段
+
+索引:
+
+	add_index(table, columns, options) 新增索引
+	remove_index(table, index) 移除索引
+	
+	options 可为空，或是:unique => true表示这是唯一。
+
+外键:
+
+	add_foreign_key(from_table, to_table, options)
+	remove_foreign_key(from_table, to_table, options)
+	
+	options 可为空,或是可自定:
+	column => from_table_foreign_key_column (默认是{to_table}_id)
+	和:primary_key => to_table_primary_key_column(默认是id)。
+
+更多方法：
+
 	add_reference
+	remove_reference
+
 	add_timestamps
+	remove_timestamps
+
 	change_column_default（必须提供 :from 和 :to 选项）
 	change_column_null
+
 	create_join_table
-	create_table
-	disable_extension
 	drop_join_table
-	drop_table（必须提供块）
+
 	enable_extension
-	remove_column（必须提供字段类型）
-	remove_foreign_key（必须提供第二个数据表）
-	remove_index
-	remove_reference
-	remove_timestamps
-	rename_column
-	rename_index
-	rename_table
+	disable_extension
+
 
 #### 字段修饰符
 
@@ -151,6 +152,26 @@ Migrations作用
 	default 修饰符：设置字段的默认值。请注意，如果使用动态值（如日期）作为默认值，那么默认值只会在第一次使时（如应用迁移的日期）计算一次。
 	index 修饰符：为字段添加索引。
 	comment 修饰符：为字段添加注释。
+
+#### 字段类型
+
+Rails|说明|MySQL|Postgres|SQLite3
+---|---|---|---|---
+:string|有限长度字串|varchar(255)|character varying(255)|varchar(255)
+:text|不限长度文字|text|text|text
+:integer|整数|int(4)|integer|integer
+:float|浮点数|float|float|float
+:decimal|十进制数|decimal|decimal|decimal
+:datetime|日期时间|datetime|timestamp|datetime
+:timestamp|时间戳章|datetime|timestamp|datetime
+:time|时间|time|time|datetime
+:date|日期|date|date|date
+:binary|二进制|blob|bytea|blob
+:boolean|布林值|tinyint|boolean|boolean
+:references|用来参照到其他Table的外部键|int(4)|integer|integer
+
+
+
 
 #### rails db:migrate
 
