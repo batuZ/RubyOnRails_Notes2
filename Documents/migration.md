@@ -25,7 +25,32 @@ Migrations作用
 
 #### 常用的migration：
 
-	
+表操作:
+
+	create_table(name, options) 新增表
+	drop_table(name) 移除表
+	rename_table(old_name, new_name) 修改表名称
+	change_table 修改表字段
+
+字段操作:
+
+	add_column(table, column, type, options) 新增一个字段
+	rename_column(table, old_column_name, new_column_name) 修改字段名称
+	change_column(table, column, type, options) 修改字段的类型(type)
+	remove_column(table , column) 移除字段
+
+索引:
+
+	add_index(table, columns, options) 新增索引
+	remove_index(table, index) 移除索引
+	`options 可为空，或是:unique => true表示这是唯一。`
+
+外键:
+
+	add_foreign_key(from_table, to_table, options)
+	remove_foreign_key(from_table, to_table, options)
+	options 可为空，或是可自定:column => from_table_foreign_key_column (默认是{to_table}_id)和:primary_key => to_table_primary_key_column(默认是id)。
+
 
 #### 例：
 	
