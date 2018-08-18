@@ -144,14 +144,17 @@ Migrations作用
 
 字段修饰符可以在创建或修改字段时使用：
 
-	limit 修饰符：设置 string/text/binary/integer 字段的最大长度。
-	precision 修饰符：定义 decimal 字段的精度，表示数字的总位数。
-	scale 修饰符：定义 decimal 字段的标度，表示小数点后的位数。
-	polymorphic 修饰符：为 belongs_to 关联添加 type 字段。
-	null 修饰符：设置字段能否为 NULL 值。
-	default 修饰符：设置字段的默认值。请注意，如果使用动态值（如日期）作为默认值，那么默认值只会在第一次使时（如应用迁移的日期）计算一次。
-	index 修饰符：为字段添加索引。
-	comment 修饰符：为字段添加注释。
+	:null 是否允许NULL，默认是允许，即true
+	:default 默认值
+	:limit 用于string、text、integer、binary指定最大值
+	:index => true 直接加上索引
+	:index => { :unique => true } 加上唯一索引
+	:foreign_key => true 加上外部键限制
+	:precision 修饰符：定义 decimal 字段的精度，表示数字的总位数。
+	:scale 修饰符：定义 decimal 字段的标度，表示小数点后的位数。
+	:polymorphic 修饰符：为 belongs_to 关联添加 type 字段。
+	:comment 修饰符：为字段添加注释。
+
 
 #### 字段类型
 
