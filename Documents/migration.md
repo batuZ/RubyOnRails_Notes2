@@ -1,4 +1,5 @@
 # migration 迁移，数据库结构管理
+参考资料：Ruby on Rails 实战圣经  https://ihower.tw/rails/migrations-cn.html
 
 Migrations作用
 
@@ -23,6 +24,10 @@ Migrations作用
 	属性部分：【字段名：类型{修饰}】 实际的操作内容，如果操作是由名称里的作动决定的，Add,Remove,create,
 
 #### 常用的migration：
+
+	
+
+#### 例：
 	
 	//创建表 rails g migration Create[_表名] [字段，字段]
 	rails g migration CreateBook name page:integer
