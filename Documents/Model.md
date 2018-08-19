@@ -50,11 +50,59 @@
     
     
 ## 验证数据
+ 
+触发验证的方法：爆炸方法（例如 save!）会在验证失败后抛出异常。验证失败后，非爆炸方法不会抛出异常，save 和 update 返回 false，create 返回对象本身。
 
-  class User < ApplicationRecord
-  end
-  
-  u=User.Create(name: 'sam')
-  
-  
+    create
+    create!
+    save
+    save!
+    update
+    update!
+    
+    
+跳过验证：下列方法会跳过验证，不管验证是否通过都会把对象存入数据库，使用时要特别留意。
+
+    decrement!
+    decrement_counter
+    increment!
+    increment_counter
+    toggle!
+    touch
+    update_all
+    update_attribute
+    update_column
+    update_columns
+    update_counters
+      
+    注意，使用 save 时如果传入 validate: false 参数，也会跳过验证。使用时要特别留意。
+    save(validate: false)
+
+主动执行验证：valid? 和 invalid?
+
+     valid? 执行验证，通过为true 不通过为 false
+     invalid? 功能与valid?相反，通过为false
+     
+    例：     
+    class User < ApplicationRecord
+      validates :name, presence: true # 不为空
+    end
+    # 通过验证
+    u = User.Create(name: 'sam')  # => true
+    u.errors.messages             # => {}  
+    
+    # 未通过验证
+    u1 = User.new
+    u1.valid?                     # => false  主动验证真
+    u1.invalid?                   # => true   主动验证假
+    u1.save!                      # => 修改数据库触发爆炸验证，报错！
+    u1.errors.messages            # => {name:["can't be blank"]} 错误信息
+    u1.save                       # => false  修改数据库触发验证，返回bool
+    
+    
+    
+    # 新记录？存！
+    u.save if u.new_record?
+    
+    
   
