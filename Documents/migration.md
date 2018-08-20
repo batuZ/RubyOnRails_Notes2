@@ -11,8 +11,44 @@ Migrations作用
 	迁移工作的主体是 db/migrate 下的rb文件，可以用辅助命令来创建，更细节的内容需要在rb中编写。
 	以下称这些迁移rb文件为 'migrate' ，称创建命令为 'migration'
 
+Model\migrate\migration之间的关系
 
-## migration 是通过Ruby代码构建migrate文件的工具，用来管理构建数据库的过程，更适合团队协作
+	Model：
+		通俗的说，就是数据库的操作类，它并不包含表或字段的定义。
+		在Model工作时，动态的与数据库交互，交互的结果将记录在数据库中。
+		Model的【基类】提供了数据库操作、关联、约束的大部分方法，同时还制定了与各类操作相关的回调函数、错误信息反馈机制。
+		在Model类中调用这此方法，来管理产品数据。例如：约束某个Model的name属性不为空
+```			
+			class Account < ApplicationRecord
+			  validates :name, presence: true
+			end
+```		
+
+	Migrate:
+		用来管理数据库结构和关系的方式，操作结果会直接影响数据库结构或关系。
+		migrate的【基类】封装了多种数据库的操作，而用户通过这些功能可以制定数据库表和字段的创建、关联、约束。
+		与 Model不同，migrate管理结构关系，而model管理内容。
+		与 Model相同，migrate也可以设置关联和约束，但主体是数据库本身的功能。Model的关联和约束功能主体在其【基类Active Record】中。
+		
+		 例如: t.string :name, null: true 也是设置name字段不能为空
+```
+			class CreateUser < ActiveRecord::Migration[5.2]
+			  def change
+			    create_table :users do |t|
+			      t.string :name, null: true
+			    end
+			  end
+			end
+```
+		相同的功能，migrate的null: true由数据库实现，Model的 presence: true 由Active Record实现。
+		1、migrate设置数据库关系可以提高安全系数，执行效率比model高，可以通过./db/schema.rb文件查看和管理
+		2、model中的设置，更灵活，便于管理，有辅助方法配合可以实现更多需求，如回调、错误信息等
+		3、同时启用，可以让数据库更安全，但成倍增加了工作量，也不易维护。
+		两者并没有直接关系，或者说用哪个都行，包括约束、关联的其它设置也是一样，那这部分工作应该放在哪里？
+		1、适合只用model定义关系约束,migrate只负责结构的情况：项目前期、产品原型、个人或小团队、频繁变更需求
+		2、适合同时启用的情况：对操作安全、性能要求高，且有专人负责数据库
+	
+## migration 是通过Ruby代码构建migrate文件的工具，用来管理构建数据库的过程
 
 #### 命令结构
 
@@ -154,7 +190,7 @@ Migrations作用
 	:scale 修饰符：定义 decimal 字段的标度，表示小数点后的位数。
 	:polymorphic 修饰符：为 belongs_to 关联添加 type 字段。
 	:comment 修饰符：为字段添加注释。
-
+	:unique: true 设置唯一
 
 #### 字段类型
 
