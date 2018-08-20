@@ -29,7 +29,6 @@ Model\migrate\migration之间的关系
 		migrate的【基类】封装了多种数据库的操作，而用户通过这些功能可以制定数据库表和字段的创建、关联、约束。
 		与 Model不同，migrate管理结构关系，而model管理内容。
 		与 Model相同，migrate也可以设置关联和约束，但主体是数据库本身的功能。Model的关联和约束功能主体在其【基类Active Record】中。
-		
 		 例如: t.string :name, null: true 也是设置name字段不能为空
 ```
 			class CreateUser < ActiveRecord::Migration[5.2]
@@ -47,6 +46,12 @@ Model\migrate\migration之间的关系
 		两者并没有直接关系，或者说用哪个都行，包括约束、关联的其它设置也是一样，那这部分工作应该放在哪里？
 		1、适合只用model定义关系约束,migrate只负责结构的情况：项目前期、产品原型、个人或小团队、频繁变更需求
 		2、适合同时启用的情况：对操作安全、性能要求高，且有专人负责数据库
+		
+	Migreation:
+		用来创建以上两种文件的工具，可以简单实现一些功能的定义
+		官方的说法：Migreation只是Active Record的第一步，更多的工作在migrate里。
+		
+		
 	
 ## migration 是通过Ruby代码构建migrate文件的工具，用来管理构建数据库的过程
 
@@ -64,21 +69,98 @@ Model\migrate\migration之间的关系
 #### 例：
 	
 	//创建表 rails g migration Create[_表名] [字段，字段]
-	rails g migration CreateBook name page:integer
-	rails g migration Create_book name page:integer
+	rails g migration CreateBook name
+		# => class CreateBooks < ActiveRecord::Migration[5.2]
+		# =>    def change
+		# =>      create_table :books do |t|
+		# =>        t.string :name
+		# =>      end
+		# =>    end
+		# =>  end
+	ps: 除非必要，大多数是通过 rails g model Book name 来创建books表
+		# => class CreateBooks < ActiveRecord::Migration[5.2]
+		# =>   def change
+		# =>     create_table :books do |t|
+		# =>       t.string :name
+		# => 
+		# =>       t.timestamps
+		# =>     end
+		# =>   end
+		# => end
+	同时创建model
+		# => class Book < ApplicationRecord
+		# => end
 
-	//创建互相关联的表
-	rails g migration CreateJoinTable customer product
-	rails g migration create_join_table_cust_prod customer product	//效果同上
 
+	//创建表，同时带入字段类型修饰符
+	rails d model Car 'price:decimal{5,2}' supplier:belongs_to{polymorphic}
+		# class CreateCars < ActiveRecord::Migration[5.2]
+		#   def change
+		#     create_table :cars do |t|
+		#       t.decimal :price, precision: 5, scale: 2
+		#       t.references :supplier, polymorphic: true
+		#       t.timestamps
+		#     end
+		#   end
+		# end
+	car.rb
+		# class Car < ApplicationRecord
+		#   belongs_to :supplier, polymorphic: true
+		# end
+	
+	
+	//创建互相关联的表，两种写法效果相同
+	rails g migration CreateJoinCarColor car color
+	rails g migration create_join_table_car_color car color
+		# class CreateJoinTableCarColor < ActiveRecord::Migration[5.2]
+		#   def change
+		#     create_join_table :cars, :colors do |t|
+		#       # t.index [:car_id, :color_id]
+		#       # t.index [:color_id, :car_id]
+		#     end
+		#   end
+		# end
+		
+		
 	//创建字段
-	rails g migration AddColorToBook color:string
 	rails g migration add_color_to_book color
-
+		# class AddColorToBook < ActiveRecord::Migration[5.2]
+		#   def change
+		#     add_column :books, :color, :integer
+		#   end
+		# end
+		
+		
+	//创建字段,同时创建索引
+?	rails g migration add_color_to_book color:string:index
+		# class AddColorToBook < ActiveRecord::Migration[5.2]
+		#   def change
+		#     add_column :books, :color, :string
+		#     add_index :books, :color
+		#   end
+		# end
+	
+	
 	//移除字段
-	rails g migration RemoveNameAgeFromStudent name age:integer
 	rails g migration remove_name_age_from_student name age:integer
+		# class RemoveColorFromBook < ActiveRecord::Migration[5.2]
+		#   def change
+		#     remove_column :books, :color, :integer
+		#   end
+		# end
 
+
+?	//为字段添加外键，两种写法效果相同
+	rails g migration add_color_to_book color:references
+	rails g migration add_color_to_book color:belongs_to
+		# class AddPosToBook < ActiveRecord::Migration[5.2]
+		#   def change
+		#     add_reference :books, :color, foreign_key: true
+		#   end
+		# end
+
+
+		
 ## migrate
 
 #### migrate 结构
