@@ -18,11 +18,9 @@ Model\migrate\migration之间的关系
 		在Model工作时，动态的与数据库交互，交互的结果将记录在数据库中。
 		Model的【基类】提供了数据库操作、关联、约束的大部分方法，同时还制定了与各类操作相关的回调函数、错误信息反馈机制。
 		在Model类中调用这此方法，来管理产品数据。例如：约束某个Model的name属性不为空
-```			
 			class Account < ApplicationRecord
 			  validates :name, presence: true
 			end
-```		
 
 	Migrate:
 		用来管理数据库结构和关系的方式，操作结果会直接影响数据库结构或关系。
@@ -30,7 +28,6 @@ Model\migrate\migration之间的关系
 		与 Model不同，migrate管理结构关系，而model管理内容。
 		与 Model相同，migrate也可以设置关联和约束，但主体是数据库本身的功能。Model的关联和约束功能主体在其【基类Active Record】中。
 		 例如: t.string :name, null: true 也是设置name字段不能为空
-```
 			class CreateUser < ActiveRecord::Migration[5.2]
 			  def change
 			    create_table :users do |t|
@@ -38,7 +35,6 @@ Model\migrate\migration之间的关系
 			    end
 			  end
 			end
-```
 		相同的功能，migrate的null: true由数据库实现，Model的 presence: true 由Active Record实现。
 		1、migrate设置数据库关系可以提高安全系数，执行效率比model高，可以通过./db/schema.rb文件查看和管理
 		2、model中的设置，更灵活，便于管理，有辅助方法配合可以实现更多需求，如回调、错误信息等
@@ -132,7 +128,7 @@ Model\migrate\migration之间的关系
 		
 		
 	//创建字段,同时创建索引
-?	rails g migration add_color_to_book color:string:index
+	rails g migration add_color_to_book color:string:index
 		# class AddColorToBook < ActiveRecord::Migration[5.2]
 		#   def change
 		#     add_column :books, :color, :string
@@ -150,7 +146,7 @@ Model\migrate\migration之间的关系
 		# end
 
 
-?	//为字段添加外键，两种写法效果相同
+	//为字段添加外键，两种写法效果相同
 	rails g migration add_color_to_book color:references
 	rails g migration add_color_to_book color:belongs_to
 		# class AddPosToBook < ActiveRecord::Migration[5.2]
