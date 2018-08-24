@@ -115,7 +115,7 @@ app.post('/foo', {:this => "that", :items => ["bar", "baz"]}, {"X-Do-Something" 
 
 
 ---
-##### 通过调用.rb代替在console的操作
+### 通过调用.rb代替在 rails c 中的操作
 
     在model文件夹或工程根目录中创建一个.rb文件，例如：console.rb
     在console.rb写些测试命令，保存，例如：puts 'is this used ...'
@@ -146,3 +146,22 @@ end
 ```
     现在就有了一个全局的 run 函数，可以在 rails console 里随时调
     
+---
+
+### 用sublime运行角本
+
+	在控制台或终端敲命令是件痛苦的事
+
+	Sublime @ windows : 工具 -> 编译系统 -> 新建编译系统...
+		{
+			"shell_cmd": ".rails/console.bat"
+		}
+        保存为工程名，不然容易乱
+
+	Sublime @ mac : 工具 -> 编译系统 -> 新建编译系统...
+		{
+			"shell_cmd": "sh .rails/console.command"
+		}
+
+		用相对路径就要跳到当前目录去编，否则就用决对路径
+		然后，所有的事都可以在run中做了
