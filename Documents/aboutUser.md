@@ -55,3 +55,17 @@
 	
 	# 登录
 	localhost:3000/register data{ name: 'userName', password: 123 }
+	
+	
+	
+## token 身份验证
+
+``` ruby
+	get :test do 
+		SecureRandom.base64(64)
+	end
+
+	get :test1 do
+		headers['Token']
+	end
+```
