@@ -2,14 +2,16 @@
 
 ## 注册、登录
 
-#### 准备
+### 准备
 
     安装并应用 
     gem 'bcrypt'
 
+
     创建用户模型
     rails g model User name password_digest
-    
+
+
     用户模型增加属性设置
     class User < ApplicationRecord
       has_secure_password
@@ -17,7 +19,7 @@
     
     rails db:migrate
     
-    增加对应接口
+### 增加对应接口
 ``` ruby
 	#
 	# 用户注册
@@ -45,3 +47,11 @@
 		user.id ? user : :null
 	end
 ```
+
+### 调试
+
+	# 注册
+	post localhost:3000/register data{ name: 'userName', password: 123, password_confirmation: 123 }
+	
+	# 登录
+	localhost:3000/register data{ name: 'userName', password: 123 }
