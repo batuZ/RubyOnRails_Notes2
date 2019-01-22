@@ -1,12 +1,12 @@
 # Active Storage Rails5.2 新增上传下载功能
 
 增加关系表
-rails active_storage:install
-rails db:migrate
+    rails active_storage:install
+    rails db:migrate
 
 在modle中增加附件，可以有多个
-has_one_attached :image  ## 一对一关系
-has_many_attached :images  ## 一对多关系
+    has_one_attached :image  ## 一对一关系
+    has_many_attached :images  ## 一对多关系
 
 同时修改健壮参数
 params.require(:project).permit(..., :image)   # 一对一关系
