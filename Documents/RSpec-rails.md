@@ -1,3 +1,12 @@
+```
+# RSpec 单元测试
+# grape api单元测试
+# https://blog.csdn.net/shiralwz/article/details/49075307
+# https://github.com/rspec/rspec-rails
+# https://relishapp.com/rspec/rspec-rails/docs
+
+```
+
 gem 'rspec-rails'
 
 `$ rails g rspec:install`
