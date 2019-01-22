@@ -4,6 +4,18 @@ gem 'rspec-rails'
 
 `$ rspec spec/*`
 
+ -API
+```runy
+class API < Grape::API
+	format :json
+	get :test do 
+		{name: "#{params[:name]}"}
+	end
+end 
+```
+
+
+ -RSpec
 ```ruby
 require 'rails_helper'
 
