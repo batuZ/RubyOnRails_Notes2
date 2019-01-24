@@ -1,4 +1,5 @@
-### rails new XX_API --api
+### rails new API --api
+翻译版文档：http://xiajian.github.io/2014/10/24/grade
 
 ```ruby
 source 'https://gems.ruby-china.com'
