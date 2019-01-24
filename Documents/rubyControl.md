@@ -58,6 +58,16 @@ pp hlm
 # =>  created_at: nil,
 # =>  updated_at: nil>
 # =>  <Book id: nil, title: "红楼梦", pages: 4800, created_at: nil, updated_at: nil> 
+
+// 调用model的自定义方法
+hlm.myFunc
+
+// 调用 helper
+helper.myHelpFunc
+
+// 调用 routesHelper
+app.user_path # => '/user/:id'
+
 ```
 
 ---
@@ -74,6 +84,11 @@ app.get '/books/12'
 # =>   Rendered books/show.html.erb within layouts/application (0.7ms)
 # => Completed 200 OK in 28ms (Views: 21.7ms | ActiveRecord: 0.3ms)
 # => 200
+
+//模拟用户登录
+app.post('/session',userName: 'test',password: '123456') 	# => 200
+// 检查body
+app.response.body 	# => "{"error" : "wrong username or password"}"
 
 
 app.https!  
