@@ -1,10 +1,12 @@
 ### rails new API --api
-翻译版文档：http://xiajian.github.io/2014/10/24/grade
-
+- 翻译版文档：http://xiajian.github.io/2014/10/24/grade
+- 示例工程： https://github.com/batuZ/Rails_GrapeAPI/tree/master/v2
 ```ruby
 source 'https://gems.ruby-china.com'
-gem 'grape'
-gem "rspec-rails"  # at group :development, :test
+gem 'jwt'		# token
+gem 'grape'		# api
+gem 'grape-entity'	# object to json
+gem "rspec-rails"  	# at group :development, :test
 ```
 ```
 set startUp at `config.ru` like `run API`
@@ -29,7 +31,7 @@ start Up
 rails s
 ```
 
-### testCase:
+### RSpec:
 ```
 # create
 rails g rspec:install
@@ -73,4 +75,27 @@ rspec spec/apis/api_spec.rb  # or rspec spec/apis/* --formate doc
 
 # =>  Finished in 0.06046 seconds (files took 2.01 seconds to load)
 # =>  2 examples, 0 failures
+```
+
+### grape-entity 格式化返回信息
+`gem 'grape-entity'`
+
+entities.rb
+```ruby
+class SoundEnt < Grape::Entity
+	expose :uuid, :url
+end
+
+class UserEnt < Grape::Entity
+	expose :userName, :userBio
+	expose :sounds,  using: SoundEnt 
+end
+```
+api.rb
+```ruby
+require 'Entities.rb'
+# 测试 grape-entity
+get :users do
+	present User.all, with: SoundEnt
+end
 ```
