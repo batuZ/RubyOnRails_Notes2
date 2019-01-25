@@ -96,6 +96,6 @@ api.rb
 require 'Entities.rb'
 # 测试 grape-entity
 get :users do
-	present User.all, with: SoundEnt
+	present User.all, with: UserEnt
 end
 ```
