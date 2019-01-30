@@ -31,8 +31,11 @@ start Up
 rails s
 ```
 
-### RSpec:
+### RSpec 单元测试:
+官方资料：https://rspec.info/documentation/3.8/rspec-rails/file.README.html#Contributing
 ```
+gem "rspec-rails"
+
 # create
 rails g rspec:install
 ```
