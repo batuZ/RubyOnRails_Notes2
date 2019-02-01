@@ -52,8 +52,9 @@ gem install therubyracer
 gem 'therubyracer',  platforms: :ruby
 ```
 在centOS中mysql的socket目录与Mac不同，根据情况修改database.yml中的数据库参数。
-`centOS: /var/lib/mysql/mysql.sock`
-`Mac: /tmp/mysql.sock`
-
+```shell
+centOS: /var/lib/mysql/mysql.sock
+Mac: /tmp/mysql.sock
+```
 
 
