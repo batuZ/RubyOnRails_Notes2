@@ -1,5 +1,6 @@
 # Active Storage Rails5.2 新增上传下载功能
 
+~ https://ruby-china.org/topics/36081
 增加关系表
 `rails active_storage:install`
 `rails db:migrate`
