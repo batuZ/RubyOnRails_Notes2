@@ -39,3 +39,6 @@ git init
 #clone 文件
 git clone https://github.com/xxx/xxxx_test.git
 ```
+
+### centOS 安装 MYSQL
+参考资料：https://www.cnblogs.com/silentdoer/articles/7258232.html#tag1
