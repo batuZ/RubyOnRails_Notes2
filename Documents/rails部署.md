@@ -42,3 +42,18 @@ git clone https://github.com/xxx/xxxx_test.git
 
 ### centOS 安装 MYSQL
 参考资料：https://www.cnblogs.com/silentdoer/articles/7258232.html#tag1
+
+在centOS中rails需要Javascript runtime支持数据库操作，以下两步解决此问题
+```shell
+# 安装一个gem 
+gem install therubyracer
+
+# 增加到 Gemfile中
+gem 'therubyracer',  platforms: :ruby
+```
+在centOS中mysql的socket目录与Mac不同，根据情况修改database.yml中的数据库参数。
+`centOS: /var/lib/mysql/mysql.sock`
+`Mac: /tmp/mysql.sock`
+
+
+
