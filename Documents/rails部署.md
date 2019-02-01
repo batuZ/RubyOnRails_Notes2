@@ -56,5 +56,9 @@ gem 'therubyracer',  platforms: :ruby
 centOS: /var/lib/mysql/mysql.sock
 Mac: /tmp/mysql.sock
 ```
-
+创建production数据库并迁移
+```
+RAILS_ENV=production rake db:create
+RAILS_ENV=production rake db:migrate
+```
 
