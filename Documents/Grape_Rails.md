@@ -1,8 +1,9 @@
-### rails new API --api
+### rails new API --api -d mysql
 - 翻译版文档：http://xiajian.github.io/2014/10/24/grade
 - 示例工程： https://github.com/batuZ/Rails_GrapeAPI/tree/master/v2
 ```ruby
 source 'https://gems.ruby-china.com'
+gem 'mysql2'		#
 gem 'jwt'		# token
 gem 'grape'		# api
 gem 'grape-entity'	# object to json
