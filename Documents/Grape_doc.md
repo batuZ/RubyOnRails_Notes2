@@ -1,4 +1,3 @@
-![grape logo](grape.png)
 
 [![Gem Version](https://badge.fury.io/rb/grape.svg)](http://badge.fury.io/rb/grape)
 [![Build Status](https://travis-ci.org/ruby-grape/grape.svg?branch=master)](https://travis-ci.org/ruby-grape/grape)
@@ -14,28 +13,28 @@
 - [Stable Release](#stable-release)
 - [Project Resources](#project-resources)
 - [Installation](#installation)
-- [Basic Usage](#basic-usage)
-- [Mounting](#mounting)
+- [Basic Usage](#basic-usage) 基本用法
+- [Mounting](#mounting) 安装
   - [Rack](#rack)
   - [ActiveRecord without Rails](#activerecord-without-rails)
   - [Alongside Sinatra (or other frameworks)](#alongside-sinatra-or-other-frameworks)
   - [Rails](#rails)
   - [Modules](#modules)
-- [Remounting](#remounting)
+- [Remounting](#remounting) 重新安装
   - [Mount Configuration](#mount-configuration)
-- [Versioning](#versioning)
+- [Versioning](#versioning) 版本管理
   - [Path](#path)
   - [Header](#header)
   - [Accept-Version Header](#accept-version-header)
   - [Param](#param)
-- [Describing Methods](#describing-methods)
-- [Configuration](#configuration)
-- [Parameters](#parameters)
+- [Describing Methods](#describing-methods) 描述方法
+- [Configuration](#configuration) 全局配置
+- [Parameters](#parameters) 参数
   - [Params Class](#params-class)
   - [Declared](#declared)
   - [Include Parent Namespaces](#include-parent-namespaces)
   - [Include Missing](#include-missing)
-- [Parameter Validation and Coercion](#parameter-validation-and-coercion)
+- [Parameter Validation and Coercion](#parameter-validation-and-coercion) 参数验证和约束
   - [Supported Parameter Types](#supported-parameter-types)
   - [Integer/Fixnum and Coercions](#integerfixnum-and-coercions)
   - [Custom Types and Coercions](#custom-types-and-coercions)
@@ -45,7 +44,7 @@
   - [Validation of Nested Parameters](#validation-of-nested-parameters)
   - [Dependent Parameters](#dependent-parameters)
   - [Group Options](#group-options)
-  - [Alias](#alias)
+  - [Alias](#alias) 别名
   - [Built-in Validators](#built-in-validators)
     - [allow_blank](#allow_blank)
     - [values](#values)
@@ -57,7 +56,7 @@
     - [at_least_one_of](#at_least_one_of)
     - [all_or_none_of](#all_or_none_of)
     - [Nested mutually_exclusive, exactly_one_of, at_least_one_of, all_or_none_of](#nested-mutually_exclusive-exactly_one_of-at_least_one_of-all_or_none_of)
-  - [Namespace Validation and Coercion](#namespace-validation-and-coercion)
+  - [Namespace Validation and Coercion](#namespace-validation-and-coercion) 命名空间验证和约束
   - [Custom Validators](#custom-validators)
   - [Validation Errors](#validation-errors)
   - [I18n](#i18n)
@@ -73,49 +72,49 @@
     - [Pass symbols for i18n translations](#pass-symbols-for-i18n-translations)
     - [Overriding Attribute Names](#overriding-attribute-names)
     - [With Default](#with-default)
-- [Headers](#headers)
-- [Routes](#routes)
-- [Helpers](#helpers)
-- [Path Helpers](#path-helpers)
-- [Parameter Documentation](#parameter-documentation)
-- [Cookies](#cookies)
-- [HTTP Status Code](#http-status-code)
-- [Redirecting](#redirecting)
-- [Recognizing Path](#recognizing-path)
-- [Allowed Methods](#allowed-methods)
-- [Raising Exceptions](#raising-exceptions)
+- [Headers](#headers) 头
+- [Routes](#routes) 路由
+- [Helpers](#helpers) 助手
+- [Path Helpers](#path-helpers) 路由助手
+- [Parameter Documentation](#parameter-documentation) 参数文档
+- [Cookies](#cookies) 
+- [HTTP Status Code](#http-status-code) 状态码
+- [Redirecting](#redirecting) 重定向
+- [Recognizing Path](#recognizing-path) 识别路径
+- [Allowed Methods](#allowed-methods) 允许的方法
+- [Raising Exceptions](#raising-exceptions) 关于error!
   - [Default Error HTTP Status Code](#default-error-http-status-code)
   - [Handling 404](#handling-404)
-- [Exception Handling](#exception-handling)
+- [Exception Handling](#exception-handling) 异常处理
     - [Rescuing exceptions inside namespaces](#rescuing-exceptions-inside-namespaces)
     - [Unrescuable Exceptions](#unrescuable-exceptions)
     - [Exceptions that should be rescued explicitly](#exceptions-that-should-be-rescued-explicitly)
   - [Rails 3.x](#rails-3x)
 - [Logging](#logging)
-- [API Formats](#api-formats)
+- [API Formats](#api-formats) API格式
   - [JSONP](#jsonp)
   - [CORS](#cors)
-- [Content-type](#content-type)
-- [API Data Formats](#api-data-formats)
-- [JSON and XML Processors](#json-and-xml-processors)
-- [RESTful Model Representations](#restful-model-representations)
+- [Content-type](#content-type) 内容类型
+- [API Data Formats](#api-data-formats) API数据格式
+- [JSON and XML Processors](#json-and-xml-processors) JSON和XML处理器
+- [RESTful Model Representations](#restful-model-representations) RESTful模型表示
   - [Grape Entities](#grape-entities)
   - [Hypermedia and Roar](#hypermedia-and-roar)
   - [Rabl](#rabl)
   - [Active Model Serializers](#active-model-serializers)
-- [Sending Raw or No Data](#sending-raw-or-no-data)
-- [Authentication](#authentication)
+- [Sending Raw or No Data](#sending-raw-or-no-data) 发送原始数据或无数据
+- [Authentication](#authentication) 验证
   - [Basic and Digest Auth](#basic-and-digest-auth)
   - [Register custom middleware for authentication](#register-custom-middleware-for-authentication)
-- [Describing and Inspecting an API](#describing-and-inspecting-an-api)
-- [Current Route and Endpoint](#current-route-and-endpoint)
+- [Describing and Inspecting an API](#describing-and-inspecting-an-api) 描述和检查API
+- [Current Route and Endpoint](#current-route-and-endpoint) 当前路线和终点
 - [Before and After](#before-and-after)
-- [Anchoring](#anchoring)
-- [Using Custom Middleware](#using-custom-middleware)
+- [Anchoring](#anchoring) 锚固，解决找不到方向的路径
+- [Using Custom Middleware](#using-custom-middleware) 使用自定义中间件
   - [Grape Middleware](#grape-middleware)
   - [Rails Middleware](#rails-middleware)
   - [Remote IP](#remote-ip)
-- [Writing Tests](#writing-tests)
+- [Writing Tests](#writing-tests) 写测试
   - [Writing Tests with Rack](#writing-tests-with-rack)
     - [RSpec](#rspec)
     - [Airborne](#airborne)
@@ -124,17 +123,17 @@
     - [RSpec](#rspec-1)
     - [MiniTest](#minitest-1)
   - [Stubbing Helpers](#stubbing-helpers)
-- [Reloading API Changes in Development](#reloading-api-changes-in-development)
+- [Reloading API Changes in Development](#reloading-api-changes-in-development) 重新加载开发中的API更改
   - [Reloading in Rack Applications](#reloading-in-rack-applications)
   - [Reloading in Rails Applications](#reloading-in-rails-applications)
-- [Performance Monitoring](#performance-monitoring)
-  - [Active Support Instrumentation](#active-support-instrumentation)
+- [Performance Monitoring](#performance-monitoring) 性能监控
+  - [Active Support Instrumentation](#active-support-instrumentation) 主动支持仪表
     - [endpoint_run.grape](#endpoint_rungrape)
     - [endpoint_render.grape](#endpoint_rendergrape)
     - [endpoint_run_filters.grape](#endpoint_run_filtersgrape)
     - [endpoint_run_validators.grape](#endpoint_run_validatorsgrape)
     - [format_response.grape](#format_responsegrape)
-  - [Monitoring Products](#monitoring-products)
+  - [Monitoring Products](#monitoring-products) 监控产品
 - [Contributing to Grape](#contributing-to-grape)
 - [License](#license)
 - [Copyright](#copyright)
