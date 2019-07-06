@@ -28,13 +28,13 @@ docker savo -o /user/output.tar centos:latest
 # 导入镜像文件，
 docker load -i /user/output.tar
 
-#登陆dockhub
+# 登陆dockhub
 docker login [-u username -p password -e email]
 
-#标记image,把目image标记上用户名
+# 标记image,把目image标记上用户名
 docker tag ms_test:1 304701204/gotos:32
 
-#推到dockhub
+# 推到dockhub
 docker push 304701204/gotos:32
 
 # -------------------------- 容器 -----------------
