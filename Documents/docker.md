@@ -20,9 +20,11 @@ docker version || docker info
 FROM centos:latest    // 基础源
 MAINTAINER <304701204@qq.com>   // 作者
 RUN yum -y install wegt   // 安装依赖
-ADD start.sh /user/local/bin/start/sh   // 添加支持文件
+ADD start.sh /user/local/bin/start.sh   // 添加支持文件,把文件中start.sh 复制到容器/user/local/bin/start.sh
+CMD echo hello word // 用于启动程序或一个角本，一个build只能执行一次CMD,多个cmd只执行最后一个，或 CMD ["/bin/bash"]
 
 ```
+ - 创建build: docker build -t centos:latest ./ #=> docker build -t 父镜像 Dockerfile目录
 
 ## images
 
