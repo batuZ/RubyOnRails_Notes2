@@ -72,6 +72,9 @@ docker run -d centos:4 bash -c 'echo hello world'
 #### 映射端口 -p 物理端口:容器端口
 docker run -d -p 80:80 centos:4 bash -c 'echo hello world'
 
+#### 设置容器名 --name 容器名
+docker run --name my_sys -d centos:4 bash -c 'echo hello world'
+
 #### 进入正在运行的容器
 docker exec -i -t 容器ID /bin/bash
 
