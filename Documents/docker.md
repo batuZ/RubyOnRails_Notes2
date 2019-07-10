@@ -88,8 +88,14 @@ docker kill(stop) 容器ID或name
 docker logs 容器ID或name
 
 #### 容器和主机交换文件（不用启动容器）
-docker cp 本地文件.txt 容器id:/home/目标文件.txt
-从容器考出，只需把两个路径反过来
+```
+// docker cp 本地文件.txt 容器id:/home/目标文件.txt
+// 从容器考出，只需把两个路径反过来
+// ex:
+docker cp SketchUPPlugin/ 4253476fabc2:home/SketchUPPlugin/
+docker cp Readme.md 4253476fabc2:home/Readme.md
+```
+
 
 
 
