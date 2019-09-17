@@ -1,5 +1,6 @@
 # RubyOnRails_Notes2
 
+
 - [x] [Scaffold](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/Scaffold.md#scaffold-%E7%AE%A1%E7%90%86%E8%B5%84%E6%BA%90%E5%A5%97%E4%BB%B6%E7%9A%84%E5%87%BD%E6%95%B0)
 - [x] [Routes](https://github.com/batuZ/RubyOnRails_Notes2/blob/master/Documents/routes.md#routes%E8%B7%AF%E7%94%B1%E7%AE%A1%E7%90%86%E5%88%97%E8%A1%A8)
 - [ ] [Modle]()
